@@ -47,17 +47,19 @@ function renderIntro() {
   const spec = state.spec;
   app.innerHTML = `
     <section class="screen hero" aria-labelledby="intro-title">
-      <p class="eyebrow">NEXT CAREER ANIMAL TEST</p>
+      <p class="eyebrow">NEXT CAREER TEST</p>
       <img class="hero-cast" src="assets/explorer_rabbit.png" alt="지도를 살펴보는 탐색 토끼" />
-      <h1 id="intro-title">${escapeHtml(spec.meta.title)}</h1>
-      <p class="hero-copy">${escapeHtml(spec.meta.subtitle)}</p>
+      <div class="hero-heading">
+        <h1 id="intro-title"><span>나의</span><span>다음 직업 찾기</span></h1>
+        <p class="hero-copy">지금 일은 잠깐 내려두고,<br />다음 직업의 동물을 만나보세요.</p>
+      </div>
       <div class="meta-pills" aria-label="테스트 정보">
-        <span class="pill">총 ${spec.meta.questionCount}문항</span>
+        <span class="pill">${spec.meta.questionCount}문항</span>
         <span class="pill">약 ${spec.meta.estimatedMinutes}분</span>
-        <span class="pill">회원가입 없음</span>
+        <span class="pill">가입 없음</span>
       </div>
       <button class="primary-button" type="button" id="start-button">내 전직 동물 찾기</button>
-      <p class="disclaimer">${escapeHtml(spec.disclaimer)}</p>
+      <p class="disclaimer">재미를 위한 자기 탐색 콘텐츠예요. 진로를 대신 결정하지 않아요.</p>
     </section>`;
   document.querySelector("#start-button").addEventListener("click", () => {
     state.step = 0;
@@ -77,13 +79,13 @@ function renderQuestion() {
   const question = questions[state.step];
   const isProfile = state.step < state.spec.profileQuestions.length;
   const selected = isProfile ? state.profile : state.answers[question.id];
-  const progress = Math.round((state.step / questions.length) * 100);
+  const progress = Math.round(((state.step + 1) / questions.length) * 100);
   const options = question.options.map((option) => `
     <button class="option-button" type="button" data-option="${escapeHtml(option.id)}"
       aria-pressed="${selected === option.id}">${escapeHtml(option.label)}</button>`).join("");
 
   app.innerHTML = `
-    <section class="screen" aria-labelledby="question-title">
+    <section class="screen question-screen" aria-labelledby="question-title">
       <div class="topbar">
         <div class="progress-label"><span>다음 직업 찾는 중</span><span>${state.step + 1} / ${questions.length}</span></div>
         <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}">
@@ -93,11 +95,12 @@ function renderQuestion() {
       <article class="question-card">
         <p class="question-kicker">${isProfile ? "현재의 나" : `상황 ${state.step}`}</p>
         <h2 id="question-title" tabindex="-1">${escapeHtml(question.prompt)}</h2>
-        <div class="options" role="group" aria-labelledby="question-title">${options}</div>
       </article>
+      <div class="options" role="group" aria-labelledby="question-title">${options}</div>
+      <p class="question-hint">👀 오래 고민하면 동물 친구들이 먼저 골라요</p>
       <div class="question-actions">
-        <button class="text-button" type="button" id="back-button">${state.step === 0 ? "처음으로" : "이전 질문"}</button>
-        ${isProfile && !question.required ? '<button class="text-button" type="button" id="skip-button">건너뛰기</button>' : ""}
+        <button class="text-button" type="button" id="back-button">← ${state.step === 0 ? "처음으로" : "이전 질문"}</button>
+        ${isProfile && !question.required ? '<button class="text-button" type="button" id="skip-button">잘 모르겠어요 →</button>' : ""}
       </div>
     </section>`;
 
@@ -225,9 +228,7 @@ function dimensionRows() {
 function renderResult() {
   state.screen = "result";
   const item = state.result.archetype;
-  const careers = item.career_groups.map((group) => `
-    <div class="career-card"><strong>${escapeHtml(group.name)}</strong><span>${group.examples.map(escapeHtml).join(" · ")}</span></div>`).join("");
-  const keywords = item.career_groups.map((group) => `<span class="keyword">${escapeHtml(group.name)}</span>`).join("");
+  const keywords = item.career_groups.map((group) => `<span class="keyword">${escapeHtml(group.examples[0])}</span>`).join("");
   app.innerHTML = `
     <section class="screen result-screen" style="--result-accent:${item.accent};--result-soft:${item.accent}20" aria-labelledby="result-title">
       <header class="result-hero">
@@ -237,18 +238,12 @@ function renderResult() {
         <p class="catchphrase">“${escapeHtml(item.catchphrase)}”</p>
         <div class="tag-row"><span class="tag">보조 성향 · ${escapeHtml(state.result.secondary)}</span></div>
       </header>
-      <article class="result-section"><h3>들켰네요, 이런 타입이에요</h3><p>${escapeHtml(item.description)}</p></article>
-      <article class="result-section"><h3>이럴 때 살아나요</h3><p>${escapeHtml(item.thrives_when)}</p></article>
-      <article class="result-section"><h3>슬쩍 구경해볼 직무군</h3><div class="career-grid">${careers}</div></article>
-      <article class="result-section"><h3>지금 일에서 챙겨갈 것</h3><p>${escapeHtml(bridgeCopy(item))}</p></article>
-      <article class="result-section"><h3>업무 성향 온도계</h3><div class="dimension-list">${dimensionRows()}</div></article>
-      <article class="result-section"><h3>이런 환경에서는 털이 곤두서요</h3><p>${escapeHtml(item.draining_environment)}</p></article>
-      <div class="keyword-row">${keywords}</div>
+      <article class="result-section"><h3>이런 타입이에요</h3><p>${escapeHtml(item.description)}</p></article>
+      <article class="result-section career-section"><h3>슬쩍 구경해볼 직무군</h3><div class="keyword-row career-keywords">${keywords}</div></article>
       <div class="result-actions">
         <button class="primary-button" type="button" id="save-card">결과 이미지 저장</button>
-        <button class="secondary-button" type="button" id="restart">다시 하기</button>
+        <button class="text-button restart-button" type="button" id="restart">↻ 다시 해보기</button>
       </div>
-      <p class="disclaimer">${escapeHtml(state.spec.disclaimer)}</p>
     </section>`;
   document.querySelector("#save-card").addEventListener("click", downloadResultCard);
   document.querySelector("#restart").addEventListener("click", restart);
