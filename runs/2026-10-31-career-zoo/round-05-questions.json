@@ -22,7 +22,7 @@
   "scored_questions": [
     {
       "id": "q01_free_hours",
-      "prompt": "갑자기 빈 회의실과 자유시간 3시간이 생겼다. 슬쩍 하고 싶은 일은?",
+      "prompt": "갑자기 빈 회의실과 자유시간 3시간이 생겼다.\n슬쩍 하고 싶은 일은?",
       "options": [
         {"id": "q01_a", "label": "궁금했던 주제의 자료와 사례를 파본다", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
         {"id": "q01_b", "label": "매번 귀찮았던 일을 자동화해본다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
@@ -32,27 +32,27 @@
     },
     {
       "id": "q02_chaotic_project",
-      "prompt": "정체불명의 새 프로젝트가 책상 위에 떨어졌다. 첫 손은 어디로 가나요?",
+      "prompt": "정체불명의 새 프로젝트가 책상 위에 떨어졌다.\n맨 처음 무엇을 할까?",
       "options": [
         {"id": "q02_a", "label": "일단 사용자와 자료부터 조사한다", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
         {"id": "q02_b", "label": "목표와 우선순위를 한 장으로 정리한다", "archetype": "planner_hedgehog", "weights": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0}},
         {"id": "q02_c", "label": "작게라도 작동하는 것을 먼저 만든다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
-        {"id": "q02_d", "label": "누가 무엇을 잘하는지부터 모아본다", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}}
+        {"id": "q02_d", "label": "팀원들이 무엇을 잘하는지부터 살펴본다", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}}
       ]
     },
     {
       "id": "q03_best_compliment",
-      "prompt": "일하면서 은근히 오래 기억에 남을 칭찬은?",
+      "prompt": "일하면서 들었던 칭찬 중,\n가장 오래 기억에 남을 말은?",
       "options": [
         {"id": "q03_a", "label": "아무도 못 본 단서를 잘 찾았어요", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
-        {"id": "q03_b", "label": "덕분에 막막했던 사람이 한 발 나아갔어요", "archetype": "supporter_otter", "weights": {"focus": -2, "mode": -1, "expression": 0, "change": -2, "collaboration": 2}},
+        {"id": "q03_b", "label": "덕분에 막막했던 상황에서 한 발 나아갔어요", "archetype": "supporter_otter", "weights": {"focus": -2, "mode": -1, "expression": 0, "change": -2, "collaboration": 2}},
         {"id": "q03_c", "label": "사람들을 한 방향으로 잘 모았어요", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}},
         {"id": "q03_d", "label": "그렇게 볼 수도 있다는 생각은 처음이에요", "archetype": "creator_chinchilla", "weights": {"focus": -1, "mode": -1, "expression": 2, "change": 2, "collaboration": -1}}
       ]
     },
     {
       "id": "q04_satisfying_day",
-      "prompt": "퇴근 버튼을 누르며 ‘오늘 좀 괜찮았다’고 느끼는 순간은?",
+      "prompt": "하루 일을 마치며,\n‘오늘 좀 괜찮았다’고 느끼는 순간은?",
       "options": [
         {"id": "q04_a", "label": "복잡했던 계획과 기준이 드디어 정리됐을 때", "archetype": "planner_hedgehog", "weights": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0}},
         {"id": "q04_b", "label": "내가 만든 것이 실제로 잘 돌아갈 때", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
@@ -62,27 +62,27 @@
     },
     {
       "id": "q05_new_tool",
-      "prompt": "팀에 수상할 만큼 편리한 새 도구가 들어왔다. 나의 반응은?",
+      "prompt": "팀에 수상할 만큼 편리한 새 도구가 들어왔다.\n나는 어떻게 할까?",
       "options": [
         {"id": "q05_a", "label": "기존 방식과 장단점을 먼저 비교한다", "archetype": "planner_hedgehog", "weights": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0}},
         {"id": "q05_b", "label": "무엇까지 가능한지 구석구석 탐색한다", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
-        {"id": "q05_c", "label": "작은 업무 하나에 바로 붙여 시험한다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
+        {"id": "q05_c", "label": "작은 업무 하나에 바로 써본다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
         {"id": "q05_d", "label": "팀원들이 써보게 설명하고 반응을 모은다", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}}
       ]
     },
     {
       "id": "q06_disagreement",
-      "prompt": "회의실 공기가 갑자기 싸늘하다. 의견이 제대로 갈렸을 때 나는?",
+      "prompt": "회의실 공기가 갑자기 싸늘해졌다.\n의견이 팽팽하게 갈렸을 때 나는?",
       "options": [
         {"id": "q06_a", "label": "판단 기준과 우선순위를 다시 세운다", "archetype": "planner_hedgehog", "weights": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0}},
         {"id": "q06_b", "label": "작게 실험해서 결과로 확인하자고 한다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
         {"id": "q06_c", "label": "각자 원하는 것을 듣고 접점을 찾는다", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}},
-        {"id": "q06_d", "label": "문제를 다른 그림이나 이야기로 바꿔본다", "archetype": "creator_chinchilla", "weights": {"focus": -1, "mode": -1, "expression": 2, "change": 2, "collaboration": -1}}
+        {"id": "q06_d", "label": "문제를 다른 그림이나 이야기로 풀어본다", "archetype": "creator_chinchilla", "weights": {"focus": -1, "mode": -1, "expression": 2, "change": 2, "collaboration": -1}}
       ]
     },
     {
       "id": "q07_dream_task",
-      "prompt": "아무도 재촉하지 않는 꿈의 업무 하나를 고른다면?",
+      "prompt": "아무도 재촉하지 않는다면,\n어떤 일을 골라 해보고 싶나요?",
       "options": [
         {"id": "q07_a", "label": "아직 답이 없는 주제를 깊게 조사하기", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
         {"id": "q07_b", "label": "쓸모 있는 제품이나 도구를 직접 만들기", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
@@ -92,7 +92,7 @@
     },
     {
       "id": "q08_next_job",
-      "prompt": "다음 직업에서 하나만 더 가질 수 있다면 무엇이 탐나나요?",
+      "prompt": "다음 직업에서 한 가지를 더 가질 수 있다면,\n무엇을 고르고 싶나요?",
       "options": [
         {"id": "q08_a", "label": "복잡한 판을 정리하고 결정할 권한", "archetype": "planner_hedgehog", "weights": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0}},
         {"id": "q08_b", "label": "다양한 사람과 목표를 함께 만드는 역할", "archetype": "connector_squirrel", "weights": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2}},
