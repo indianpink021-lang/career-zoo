@@ -22,7 +22,7 @@
   "scored_questions": [
     {
       "id": "q01_free_hours",
-      "prompt": "갑자기 빈 회의실과 자유 시간 3시간이 생겼다. 슬쩍 하고 싶은 일은?",
+      "prompt": "갑자기 빈 회의실과 자유시간 3시간이 생겼다. 슬쩍 하고 싶은 일은?",
       "options": [
         {"id": "q01_a", "label": "궁금했던 주제의 자료와 사례를 파본다", "archetype": "explorer_rabbit", "weights": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1}},
         {"id": "q01_b", "label": "매번 귀찮았던 일을 자동화해본다", "archetype": "maker_hamster", "weights": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1}},
