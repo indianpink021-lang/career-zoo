@@ -218,7 +218,7 @@ h1, h2, h3 {
 }
 
 .question-kicker { margin: 0 0 12px; color: var(--coral); font-size: 12px; font-weight: 800; line-height: 1.25; }
-.question-card h2 { font-size: 25px; line-height: 1.24; letter-spacing: -0.035em; }
+.question-card h2 { font-size: 25px; line-height: 1.24; letter-spacing: -0.035em; white-space: pre-line; }
 .options { display: grid; gap: 10px; }
 
 .option-button {
