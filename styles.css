@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Hakgyoansim Dunggeunmiso Web";
+  src: url("assets/fonts/Hakgyoansim-Dunggeunmiso-TTF-B.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --ink: #292725;
@@ -12,7 +20,7 @@
   --purple: #a978e8;
   --purple-soft: #f3ebff;
   --green-soft: #dff7ec;
-  --display: "Hakgyoansim Dunggeunmiso B", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --display: "Hakgyoansim Dunggeunmiso Web", "Arial Rounded MT Bold", system-ui, sans-serif;
   --body: Pretendard, SUIT, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
