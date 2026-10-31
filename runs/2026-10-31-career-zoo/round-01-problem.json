@@ -1,0 +1,29 @@
+{
+  "round": 1,
+  "title": "문제와 성공 기준",
+  "status": "completed",
+  "decisions": {
+    "target_audience": {
+      "age_range": "20~40대",
+      "employment_status": [
+        "현재 직업이 있는 직장인",
+        "현재 사업을 운영하는 자영업자"
+      ],
+      "inclusion_rule": "현재 직업이 있는 사람이라면 참여 가능"
+    },
+    "experience_priority": {
+      "fun_and_shareability": 60,
+      "career_insight": 40
+    },
+    "primary_success_criteria": [
+      "결과가 나와 닮았다는 느낌",
+      "캐릭터의 매력",
+      "3분 내 완료"
+    ]
+  },
+  "implications": [
+    "취업 준비생 중심의 카피를 피하고 전직과 업종 전환을 포괄한다.",
+    "결과의 정밀한 직업 예측보다 공감과 공유 경험을 우선한다.",
+    "문항 수와 문장 길이를 제한해 3분 내 완료를 지킨다."
+  ]
+}

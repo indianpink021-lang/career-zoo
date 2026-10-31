@@ -1,0 +1,37 @@
+{
+  "method": "exhaustive",
+  "total": 65536,
+  "seed": null,
+  "distribution": {
+    "explorer_rabbit": {
+      "name": "탐색 토끼",
+      "count": 12238,
+      "percent": 18.67
+    },
+    "maker_hamster": {
+      "name": "뚝딱 햄스터",
+      "count": 9158,
+      "percent": 13.97
+    },
+    "planner_hedgehog": {
+      "name": "기획 고슴도치",
+      "count": 13613,
+      "percent": 20.77
+    },
+    "connector_squirrel": {
+      "name": "연결 다람쥐",
+      "count": 12699,
+      "percent": 19.38
+    },
+    "creator_chinchilla": {
+      "name": "창작 친칠라",
+      "count": 9822,
+      "percent": 14.99
+    },
+    "supporter_otter": {
+      "name": "돌봄 수달",
+      "count": 8006,
+      "percent": 12.22
+    }
+  }
+}

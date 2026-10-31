@@ -1,0 +1,57 @@
+{
+  "round": 4,
+  "title": "결과 캐릭터",
+  "status": "completed",
+  "naming_rule": "캐릭터명은 기능을 직관적으로 전달하고 유머는 캐치프레이즈와 설명에서 표현한다.",
+  "career_recommendation_format": "넓은 직무군 3개와 각 직무군의 구체적인 직무 예시",
+  "archetypes": [
+    {
+      "id": "explorer_rabbit",
+      "name": "탐색 토끼",
+      "traits": ["관찰", "조사", "호기심"],
+      "vector": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1},
+      "career_area": "사용자 이해",
+      "examples": ["UX 리서치", "데이터 분석", "시장조사"]
+    },
+    {
+      "id": "maker_hamster",
+      "name": "뚝딱 햄스터",
+      "traits": ["제작", "자동화", "개선"],
+      "vector": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1},
+      "career_area": "제품 만들기",
+      "examples": ["개발", "프로덕트 운영", "노코드 자동화"]
+    },
+    {
+      "id": "planner_hedgehog",
+      "name": "기획 고슴도치",
+      "traits": ["구조화", "판단", "우선순위"],
+      "vector": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0},
+      "career_area": "문제 구조화",
+      "examples": ["PM", "서비스 기획", "사업기획"]
+    },
+    {
+      "id": "connector_squirrel",
+      "name": "연결 다람쥐",
+      "traits": ["설득", "조율", "관계 형성"],
+      "vector": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2},
+      "career_area": "관계와 성장",
+      "examples": ["HR", "커뮤니티", "세일즈"]
+    },
+    {
+      "id": "creator_chinchilla",
+      "name": "창작 친칠라",
+      "traits": ["표현", "감각", "새로운 해석"],
+      "vector": {"focus": -1, "mode": -1, "expression": 2, "change": 2, "collaboration": -1},
+      "career_area": "아이디어 표현",
+      "examples": ["디자인", "콘텐츠", "브랜딩"]
+    },
+    {
+      "id": "supporter_otter",
+      "name": "돌봄 수달",
+      "traits": ["공감", "지원", "성장 촉진"],
+      "vector": {"focus": -2, "mode": -1, "expression": 0, "change": -2, "collaboration": 2},
+      "career_area": "사람의 성장",
+      "examples": ["교육", "코칭", "고객 경험"]
+    }
+  ]
+}

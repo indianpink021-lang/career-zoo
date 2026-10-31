@@ -1,0 +1,969 @@
+{
+  "meta": {
+    "title": "나의 다음 직업 찾기",
+    "subtitle": "지금 일은 잠깐 내려두고, 다음 직업의 동물을 만나보세요.",
+    "version": "0.1.0",
+    "runId": "2026-10-31-career-zoo",
+    "questionCount": 9,
+    "estimatedMinutes": 3
+  },
+  "dimensions": [
+    {
+      "id": "focus",
+      "negative": "사람 중심",
+      "positive": "시스템 중심"
+    },
+    {
+      "id": "mode",
+      "negative": "탐색 중심",
+      "positive": "실행 중심"
+    },
+    {
+      "id": "expression",
+      "negative": "분석 중심",
+      "positive": "표현 중심"
+    },
+    {
+      "id": "change",
+      "negative": "안정 선호",
+      "positive": "실험 선호"
+    },
+    {
+      "id": "collaboration",
+      "negative": "독립 작업",
+      "positive": "협업 작업"
+    }
+  ],
+  "scoring": {
+    "option_weight_range": [
+      -2,
+      2
+    ],
+    "primary_result": "캐릭터별 득표를 질문 내 등장 횟수로 정규화해 가장 높은 결과를 선택",
+    "tie_breaker": "전체 응답의 평균 성향 벡터와 캐릭터 기준 벡터의 거리",
+    "secondary_result": "절댓값이 가장 큰 성향 축을 보조 태그로 표현",
+    "deterministic": true,
+    "refined_in_round": 7,
+    "accepted_random_distribution_range_percent": [
+      10,
+      25
+    ]
+  },
+  "profileQuestions": [
+    {
+      "id": "current_field",
+      "prompt": "요즘 가장 많은 시간을 쓰는 일은 어느 쪽인가요?",
+      "required": false,
+      "options": [
+        {
+          "id": "planning_management",
+          "label": "기획·경영·관리"
+        },
+        {
+          "id": "tech_data",
+          "label": "개발·IT·데이터"
+        },
+        {
+          "id": "design_content",
+          "label": "디자인·콘텐츠·미디어"
+        },
+        {
+          "id": "sales_marketing",
+          "label": "영업·마케팅·고객"
+        },
+        {
+          "id": "education_research",
+          "label": "교육·연구"
+        },
+        {
+          "id": "care_public",
+          "label": "의료·돌봄·공공"
+        },
+        {
+          "id": "production_field",
+          "label": "생산·기술·현장"
+        },
+        {
+          "id": "finance_legal_admin",
+          "label": "재무·법무·행정"
+        },
+        {
+          "id": "self_employed",
+          "label": "자영업·사업 운영"
+        },
+        {
+          "id": "other",
+          "label": "기타·선택하기 어려움"
+        }
+      ]
+    }
+  ],
+  "currentFieldLabels": {
+    "planning_management": "기획·경영·관리",
+    "tech_data": "개발·IT·데이터",
+    "design_content": "디자인·콘텐츠·미디어",
+    "sales_marketing": "영업·마케팅·고객",
+    "education_research": "교육·연구",
+    "care_public": "의료·돌봄·공공",
+    "production_field": "생산·기술·현장",
+    "finance_legal_admin": "재무·법무·행정",
+    "self_employed": "자영업·사업 운영",
+    "other": "기타·선택하기 어려움"
+  },
+  "transferableSkillMap": {
+    "planning_management": [
+      "목표 설정",
+      "우선순위 판단",
+      "이해관계 조율"
+    ],
+    "tech_data": [
+      "시스템 사고",
+      "데이터 이해",
+      "기술적 문제 해결"
+    ],
+    "design_content": [
+      "시각화",
+      "스토리텔링",
+      "사용자 관점"
+    ],
+    "sales_marketing": [
+      "설득",
+      "시장 감각",
+      "고객 커뮤니케이션"
+    ],
+    "education_research": [
+      "설명",
+      "조사",
+      "학습 구조화"
+    ],
+    "care_public": [
+      "공감",
+      "위험 관리",
+      "다양한 관계자 조율"
+    ],
+    "production_field": [
+      "현장 실행",
+      "품질 관리",
+      "프로세스 개선"
+    ],
+    "finance_legal_admin": [
+      "정확성",
+      "규정 이해",
+      "문서와 위험 관리"
+    ],
+    "self_employed": [
+      "고객 이해",
+      "전체 운영",
+      "제한된 자원에서의 의사결정"
+    ],
+    "other": [
+      "현장에서 쌓은 문제 해결",
+      "협업",
+      "업무 맥락 이해"
+    ]
+  },
+  "bridgeTemplate": "{currentField}에서 쌓았을 가능성이 있는 {skill1}, {skill2} 경험은 다음 직무에서도 활용할 수 있어요. {bridgeTheme}",
+  "scoredQuestions": [
+    {
+      "id": "q01_free_hours",
+      "prompt": "갑자기 빈 회의실과 자유 시간 3시간이 생겼다. 슬쩍 하고 싶은 일은?",
+      "options": [
+        {
+          "id": "q01_a",
+          "label": "궁금했던 주제의 자료와 사례를 파본다",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q01_b",
+          "label": "매번 귀찮았던 일을 자동화해본다",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q01_c",
+          "label": "머릿속 아이디어를 이미지나 글로 만들어본다",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q01_d",
+          "label": "요즘 힘들어 보인 동료의 일을 슬쩍 도와준다",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q02_chaotic_project",
+      "prompt": "정체불명의 새 프로젝트가 책상 위에 떨어졌다. 첫 손은 어디로 가나요?",
+      "options": [
+        {
+          "id": "q02_a",
+          "label": "일단 사용자와 자료부터 조사한다",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q02_b",
+          "label": "목표와 우선순위를 한 장으로 정리한다",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          }
+        },
+        {
+          "id": "q02_c",
+          "label": "작게라도 작동하는 것을 먼저 만든다",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q02_d",
+          "label": "누가 무엇을 잘하는지부터 모아본다",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q03_best_compliment",
+      "prompt": "일하면서 은근히 오래 기억에 남을 칭찬은?",
+      "options": [
+        {
+          "id": "q03_a",
+          "label": "아무도 못 본 단서를 잘 찾았어요",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q03_b",
+          "label": "덕분에 막막했던 사람이 한 발 나아갔어요",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "q03_c",
+          "label": "사람들을 한 방향으로 잘 모았어요",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "q03_d",
+          "label": "그렇게 볼 수도 있다는 생각은 처음이에요",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q04_satisfying_day",
+      "prompt": "퇴근 버튼을 누르며 ‘오늘 좀 괜찮았다’고 느끼는 순간은?",
+      "options": [
+        {
+          "id": "q04_a",
+          "label": "복잡했던 계획과 기준이 드디어 정리됐을 때",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          }
+        },
+        {
+          "id": "q04_b",
+          "label": "내가 만든 것이 실제로 잘 돌아갈 때",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q04_c",
+          "label": "흐릿했던 아이디어가 멋진 형태를 갖췄을 때",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q04_d",
+          "label": "누군가가 내 도움으로 한결 편해졌을 때",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q05_new_tool",
+      "prompt": "팀에 수상할 만큼 편리한 새 도구가 들어왔다. 나의 반응은?",
+      "options": [
+        {
+          "id": "q05_a",
+          "label": "기존 방식과 장단점을 먼저 비교한다",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          }
+        },
+        {
+          "id": "q05_b",
+          "label": "무엇까지 가능한지 구석구석 탐색한다",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q05_c",
+          "label": "작은 업무 하나에 바로 붙여 시험한다",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q05_d",
+          "label": "팀원들이 써보게 설명하고 반응을 모은다",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q06_disagreement",
+      "prompt": "회의실 공기가 갑자기 싸늘하다. 의견이 제대로 갈렸을 때 나는?",
+      "options": [
+        {
+          "id": "q06_a",
+          "label": "판단 기준과 우선순위를 다시 세운다",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          }
+        },
+        {
+          "id": "q06_b",
+          "label": "작게 실험해서 결과로 확인하자고 한다",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q06_c",
+          "label": "각자 원하는 것을 듣고 접점을 찾는다",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "q06_d",
+          "label": "문제를 다른 그림이나 이야기로 바꿔본다",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q07_dream_task",
+      "prompt": "아무도 재촉하지 않는 꿈의 업무 하나를 고른다면?",
+      "options": [
+        {
+          "id": "q07_a",
+          "label": "아직 답이 없는 주제를 깊게 조사하기",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q07_b",
+          "label": "쓸모 있는 제품이나 도구를 직접 만들기",
+          "archetype": "maker_hamster",
+          "weights": {
+            "focus": 2,
+            "mode": 2,
+            "expression": -1,
+            "change": 1,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q07_c",
+          "label": "사람들이 기억할 콘텐츠나 경험 만들기",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        },
+        {
+          "id": "q07_d",
+          "label": "누군가가 성장하도록 곁에서 돕기",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q08_next_job",
+      "prompt": "다음 직업에서 하나만 더 가질 수 있다면 무엇이 탐나나요?",
+      "options": [
+        {
+          "id": "q08_a",
+          "label": "복잡한 판을 정리하고 결정할 권한",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          }
+        },
+        {
+          "id": "q08_b",
+          "label": "다양한 사람과 목표를 함께 만드는 역할",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "q08_c",
+          "label": "사람에게 도움이 된다는 분명한 감각",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "q08_d",
+          "label": "새로운 것을 내 방식대로 표현할 자유",
+          "archetype": "creator_chinchilla",
+          "weights": {
+            "focus": -1,
+            "mode": -1,
+            "expression": 2,
+            "change": 2,
+            "collaboration": -1
+          }
+        }
+      ]
+    }
+  ],
+  "archetypes": [
+    {
+      "id": "explorer_rabbit",
+      "name": "탐색 토끼",
+      "traits": [
+        "관찰",
+        "조사",
+        "호기심"
+      ],
+      "vector": {
+        "focus": 0,
+        "mode": -2,
+        "expression": -1,
+        "change": 2,
+        "collaboration": -1
+      },
+      "career_area": "사용자 이해",
+      "examples": [
+        "UX 리서치",
+        "데이터 분석",
+        "시장조사"
+      ],
+      "catchphrase": "답은 아직 없는데 탭은 벌써 열두 개예요.",
+      "description": "모두가 정답을 찾을 때, 당신은 좋은 질문부터 찾습니다. 낯선 주제의 단서를 모으고 서로 연결하는 동안 머리가 가장 빠르게 돌아가요. 결론을 서두르라는 말을 들으면 귀가 살짝 접히지만, 남들이 지나친 가능성을 발견하는 데는 꽤 집요합니다.",
+      "thrives_when": "아직 답이 정해지지 않은 문제를 조사하고, 사용자와 시장의 숨은 신호를 발견할 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "사용자·시장 이해",
+          "examples": [
+            "UX 리서처",
+            "시장조사",
+            "CX 인사이트"
+          ]
+        },
+        {
+          "name": "데이터·정보 분석",
+          "examples": [
+            "데이터 분석",
+            "BI 분석",
+            "정책 연구"
+          ]
+        },
+        {
+          "name": "전략 탐색",
+          "examples": [
+            "프로덕트 디스커버리",
+            "트렌드 리서치",
+            "리서치 기획"
+          ]
+        }
+      ],
+      "bridge_theme": "이미 가진 경험은 좋은 질문을 만들고 단서를 읽는 현장 지식으로 옮겨갈 수 있어요.",
+      "draining_environment": "조사할 틈도 없이 ‘원래 이렇게 해요’만 반복되면 토끼굴을 파고 사라지고 싶어져요.",
+      "alt": "여러 메모와 돋보기를 들고 호기심 가득한 표정으로 단서를 찾는 탐색 토끼",
+      "asset": "assets/characters/explorer_rabbit.png",
+      "accent": "#FF8D78"
+    },
+    {
+      "id": "maker_hamster",
+      "name": "뚝딱 햄스터",
+      "traits": [
+        "제작",
+        "자동화",
+        "개선"
+      ],
+      "vector": {
+        "focus": 2,
+        "mode": 2,
+        "expression": -1,
+        "change": 1,
+        "collaboration": -1
+      },
+      "career_area": "제품 만들기",
+      "examples": [
+        "개발",
+        "프로덕트 운영",
+        "노코드 자동화"
+      ],
+      "catchphrase": "회의는 됐고, 일단 굴러가게 해볼게요.",
+      "description": "설명서가 끝나기도 전에 손이 먼저 움직이는 타입입니다. 거창한 계획보다 작동하는 첫 버전을 만들고, 써보면서 계속 고치는 쪽을 믿어요. 반복되는 귀찮음을 발견하면 머릿속 수레바퀴가 자동화 방법을 찾기 시작합니다.",
+      "thrives_when": "아이디어를 실제 제품이나 도구로 만들고, 과정의 낭비를 줄이며 눈에 보이는 개선을 쌓을 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "소프트웨어·자동화",
+          "examples": [
+            "소프트웨어 개발",
+            "업무 자동화",
+            "솔루션 엔지니어"
+          ]
+        },
+        {
+          "name": "제품·서비스 운영",
+          "examples": [
+            "프로덕트 운영",
+            "서비스 운영",
+            "기술 운영"
+          ]
+        },
+        {
+          "name": "프로세스 개선",
+          "examples": [
+            "운영 혁신",
+            "품질 관리",
+            "생산성 개선"
+          ]
+        }
+      ],
+      "bridge_theme": "이미 경험한 현실의 제약은 무엇을 어떻게 만들어야 실제로 굴러가는지 아는 자산이 될 수 있어요.",
+      "draining_environment": "결정 없이 회의만 세 시간째면 볼주머니에 미완성 할 일만 계속 쌓여요.",
+      "alt": "작은 공구와 노트북을 앞에 두고 무언가를 빠르게 조립하는 뚝딱 햄스터",
+      "asset": "assets/characters/maker_hamster.png",
+      "accent": "#FF9F1C"
+    },
+    {
+      "id": "planner_hedgehog",
+      "name": "기획 고슴도치",
+      "traits": [
+        "구조화",
+        "판단",
+        "우선순위"
+      ],
+      "vector": {
+        "focus": 1,
+        "mode": 1,
+        "expression": -2,
+        "change": -1,
+        "collaboration": 0
+      },
+      "career_area": "문제 구조화",
+      "examples": [
+        "PM",
+        "서비스 기획",
+        "사업기획"
+      ],
+      "catchphrase": "잠깐만요, 지금 우선순위가 몇 개인 거죠?",
+      "description": "복잡한 이야기가 쏟아지면 머릿속에서 조용히 표와 순서가 생깁니다. 목표와 기준을 분명히 하고, 무엇을 먼저 포기할지 결정할 때 실력이 드러나요. 계획 없는 열정이 돌진해오면 가시가 조금 서지만, 혼란을 실행 가능한 구조로 바꾸는 데 강합니다.",
+      "thrives_when": "여러 요구사항을 정리하고 중요한 결정을 내리며, 사람들이 따라갈 수 있는 계획을 만들 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "제품·서비스 기획",
+          "examples": [
+            "프로덕트 매니저",
+            "서비스 기획",
+            "비즈니스 분석"
+          ]
+        },
+        {
+          "name": "사업·전략 기획",
+          "examples": [
+            "사업기획",
+            "전략기획",
+            "운영기획"
+          ]
+        },
+        {
+          "name": "프로젝트·리스크 관리",
+          "examples": [
+            "프로젝트 매니저",
+            "PMO",
+            "리스크 관리"
+          ]
+        }
+      ],
+      "bridge_theme": "지금까지 익힌 업무 맥락은 판단 기준과 현실적인 우선순위를 세우는 재료가 될 수 있어요.",
+      "draining_environment": "목표는 매일 바뀌는데 모두가 ‘일단 열심히’를 외치면 가시가 자동으로 곤두서요.",
+      "alt": "복잡한 메모를 가지런히 정리하며 우선순위를 표시하는 기획 고슴도치",
+      "asset": "assets/characters/planner_hedgehog.png",
+      "accent": "#A978E8"
+    },
+    {
+      "id": "connector_squirrel",
+      "name": "연결 다람쥐",
+      "traits": [
+        "설득",
+        "조율",
+        "관계 형성"
+      ],
+      "vector": {
+        "focus": -2,
+        "mode": 1,
+        "expression": 1,
+        "change": 0,
+        "collaboration": 2
+      },
+      "career_area": "관계와 성장",
+      "examples": [
+        "HR",
+        "커뮤니티",
+        "세일즈"
+      ],
+      "catchphrase": "그분이랑 이분이 이야기하면 바로 풀릴 것 같은데요?",
+      "description": "정보보다 먼저 사람 사이의 흐름을 읽습니다. 서로 다른 언어를 쓰는 사람들의 말을 번역하고, 흩어진 힘을 한 방향으로 모을 때 존재감이 커져요. 혼자 다 해내는 영웅보다 필요한 사람과 자원을 정확히 연결하는 편이 훨씬 빠르다고 믿습니다.",
+      "thrives_when": "관계를 만들고 이해관계를 조율하며, 여러 사람이 같은 목표를 향해 움직이도록 설득할 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "사람·조직",
+          "examples": [
+            "HR",
+            "채용",
+            "조직문화"
+          ]
+        },
+        {
+          "name": "사업 관계·성장",
+          "examples": [
+            "B2B 세일즈",
+            "파트너십",
+            "고객 성공"
+          ]
+        },
+        {
+          "name": "커뮤니티·커뮤니케이션",
+          "examples": [
+            "커뮤니티 매니저",
+            "PR",
+            "퍼실리테이터"
+          ]
+        }
+      ],
+      "bridge_theme": "현재 분야에서 만난 사람과 이해관계의 경험은 서로 다른 입장을 연결하는 번역 능력으로 이어질 수 있어요.",
+      "draining_environment": "정보를 꽁꽁 숨긴 채 각자 자기 도토리만 지키는 팀에서는 꼬리가 축 처져요.",
+      "alt": "여러 색의 실과 도토리 메모를 이어 사람들을 연결하는 연결 다람쥐",
+      "asset": "assets/characters/connector_squirrel.png",
+      "accent": "#49A96C"
+    },
+    {
+      "id": "creator_chinchilla",
+      "name": "창작 친칠라",
+      "traits": [
+        "표현",
+        "감각",
+        "새로운 해석"
+      ],
+      "vector": {
+        "focus": -1,
+        "mode": -1,
+        "expression": 2,
+        "change": 2,
+        "collaboration": -1
+      },
+      "career_area": "아이디어 표현",
+      "examples": [
+        "디자인",
+        "콘텐츠",
+        "브랜딩"
+      ],
+      "catchphrase": "그건 알겠고요, 조금 더 재밌게 할 수 없나요?",
+      "description": "익숙한 것을 그대로 두기보다 다른 각도로 비틀어 보고 싶어 합니다. 흐릿한 생각을 이미지와 문장, 경험으로 바꾸는 순간 집중력이 올라가요. 정답을 복사하라는 주문을 받으면 털이 금방 푸석해지지만, 사람들이 기억할 형태를 만드는 데 강합니다.",
+      "thrives_when": "새로운 관점을 표현하고, 아이디어를 사람들이 보고 느낄 수 있는 콘텐츠와 경험으로 바꿀 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "시각·경험 디자인",
+          "examples": [
+            "그래픽 디자인",
+            "UX·UI 디자인",
+            "모션 디자인"
+          ]
+        },
+        {
+          "name": "콘텐츠·스토리",
+          "examples": [
+            "콘텐츠 기획",
+            "에디터",
+            "카피라이터"
+          ]
+        },
+        {
+          "name": "브랜드·크리에이티브",
+          "examples": [
+            "브랜드 전략",
+            "크리에이티브 디렉션",
+            "캠페인 기획"
+          ]
+        }
+      ],
+      "bridge_theme": "지금까지 쌓은 분야 지식은 남들이 쉽게 흉내 내기 어려운 소재와 관점으로 다시 표현될 수 있어요.",
+      "draining_environment": "어제 만든 것과 똑같이, 이유도 묻지 말고 만들라는 날이 이어지면 털빛이 흐려져요.",
+      "alt": "러프한 스케치와 색종이에 둘러싸여 새로운 이미지를 만드는 창작 친칠라",
+      "asset": "assets/characters/creator_chinchilla.png",
+      "accent": "#5E91D8"
+    },
+    {
+      "id": "supporter_otter",
+      "name": "돌봄 수달",
+      "traits": [
+        "공감",
+        "지원",
+        "성장 촉진"
+      ],
+      "vector": {
+        "focus": -2,
+        "mode": -1,
+        "expression": 0,
+        "change": -2,
+        "collaboration": 2
+      },
+      "career_area": "사람의 성장",
+      "examples": [
+        "교육",
+        "코칭",
+        "고객 경험"
+      ],
+      "catchphrase": "다들 괜찮다는데, 안 괜찮은 사람 한 명 보이는데요.",
+      "description": "사람이 어디에서 막히고 무엇이 필요한지 유난히 빨리 알아차립니다. 누군가가 배우고 적응하며 조금씩 편안해지는 과정을 곁에서 돕는 데 보람을 느껴요. 성과표에는 잘 안 잡히는 문제까지 챙기다가 자기 몫을 잊을 수 있으니, 친절에도 경계선은 필요합니다.",
+      "thrives_when": "상대의 필요를 이해하고 적절한 정보와 경험을 제공해, 사람이 성장하거나 적응하도록 도울 때 살아나요.",
+      "career_groups": [
+        {
+          "name": "학습·성장 지원",
+          "examples": [
+            "교육기획",
+            "L&D",
+            "학습 퍼실리테이션"
+          ]
+        },
+        {
+          "name": "사용자 지원·경험",
+          "examples": [
+            "CX 기획",
+            "고객지원 운영",
+            "서비스 케어"
+          ]
+        },
+        {
+          "name": "구성원 경험",
+          "examples": [
+            "온보딩",
+            "직원 경험",
+            "프로그램 운영"
+          ]
+        }
+      ],
+      "bridge_theme": "현재 분야에서 사람들의 어려움을 가까이 본 경험은 더 나은 지원과 성장 경험을 설계하는 감각이 될 수 있어요.",
+      "draining_environment": "사람을 숫자로만 보고 도움을 전부 개인의 몫으로 돌리는 곳에서는 물 밖에 나온 수달처럼 말라가요.",
+      "alt": "작은 안내판을 들고 옆 동물의 성장을 다정하게 돕는 돌봄 수달",
+      "asset": "assets/characters/supporter_otter.png",
+      "accent": "#65C9A7"
+    }
+  ],
+  "resultCard": {
+    "width": 1080,
+    "height": 1350,
+    "includes": [
+      "캐릭터",
+      "결과명",
+      "캐치프레이즈",
+      "보조 성향",
+      "직무 키워드 3개"
+    ],
+    "excludes": [
+      "현재 직업 분야",
+      "긴 결과 설명",
+      "민감한 프로필 정보"
+    ]
+  },
+  "typography": {
+    "display": "학교안심 둥근미소 B",
+    "display_usage": "메인 타이틀, 결과 유형명, 짧은 강조 문구",
+    "body": "가독성이 높은 시스템 고딕",
+    "body_usage": "질문, 선택지, 결과 설명, 버튼",
+    "rule": "손글씨 계열은 포인트로만 사용하고 긴 본문에는 사용하지 않는다."
+  },
+  "accessibility": {
+    "minimum_touch_target_px": 44,
+    "keyboard_navigation": true,
+    "meaningful_alt_text": true,
+    "prefers_reduced_motion": true,
+    "color_is_not_only_signal": true
+  },
+  "disclaimer": "이 결과는 재미를 위한 자기 탐색 콘텐츠이며, 직업 적성이나 취업 가능성을 진단하지 않습니다."
+}

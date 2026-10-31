@@ -1,0 +1,32 @@
+{
+  "round": 3,
+  "title": "성향 축과 점수 모델",
+  "status": "completed",
+  "dimensions": [
+    {"id": "focus", "negative": "사람 중심", "positive": "시스템 중심"},
+    {"id": "mode", "negative": "탐색 중심", "positive": "실행 중심"},
+    {"id": "expression", "negative": "분석 중심", "positive": "표현 중심"},
+    {"id": "change", "negative": "안정 선호", "positive": "실험 선호"},
+    {"id": "collaboration", "negative": "독립 작업", "positive": "협업 작업"}
+  ],
+  "scoring": {
+    "option_weight_range": [-2, 2],
+    "primary_result": "캐릭터별 득표를 질문 내 등장 횟수로 정규화해 가장 높은 결과를 선택",
+    "tie_breaker": "전체 응답의 평균 성향 벡터와 캐릭터 기준 벡터의 거리",
+    "secondary_result": "절댓값이 가장 큰 성향 축을 보조 태그로 표현",
+    "deterministic": true,
+    "refined_in_round": 7,
+    "accepted_random_distribution_range_percent": [10, 25]
+  },
+  "profile": {
+    "included": ["현재 직업 분야"],
+    "excluded": ["전공", "성별", "MBTI"],
+    "affects_character_score": false,
+    "use": "현재 직업에서 축적했을 가능성이 있는 스킬과 전문성을 다음 직무군에 연결하는 설명"
+  },
+  "guardrails": [
+    "현재 직업 분야만으로 실제 보유 스킬을 단정하지 않는다.",
+    "전문성 연결은 가능성의 표현으로 작성한다.",
+    "현재 직업을 바꾸어도 동일한 성향 응답에는 동일한 대표 캐릭터가 나와야 한다."
+  ]
+}

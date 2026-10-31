@@ -1,0 +1,36 @@
+{
+  "round": 7,
+  "title": "시뮬레이션과 품질 조정",
+  "status": "completed",
+  "simulation_type": "8개 점수 질문의 전체 응답 조합",
+  "total_combinations": 65536,
+  "accepted_range_percent": [10, 25],
+  "archetype_exposure": {
+    "explorer_rabbit": 5,
+    "maker_hamster": 6,
+    "planner_hedgehog": 5,
+    "connector_squirrel": 5,
+    "creator_chinchilla": 6,
+    "supporter_otter": 5
+  },
+  "final_distribution": {
+    "explorer_rabbit": {"count": 12238, "percent": 18.67},
+    "maker_hamster": {"count": 9158, "percent": 13.97},
+    "planner_hedgehog": {"count": 13613, "percent": 20.77},
+    "connector_squirrel": {"count": 12699, "percent": 19.38},
+    "creator_chinchilla": {"count": 9822, "percent": 14.99},
+    "supporter_otter": {"count": 8006, "percent": 12.22}
+  },
+  "ties_before_axis_resolution": {
+    "count": 16679,
+    "percent": 25.45
+  },
+  "all_results_reachable": true,
+  "all_results_within_accepted_range": true,
+  "scoring": [
+    "선택지와 연결된 캐릭터에 1표를 부여한다.",
+    "캐릭터 득표를 해당 캐릭터의 질문 내 등장 횟수로 나눈다.",
+    "정규화 점수가 같으면 응답 평균 벡터와 캐릭터 기준 벡터의 거리로 결정한다.",
+    "그래도 같으면 고정된 캐릭터 순서로 결정한다."
+  ]
+}

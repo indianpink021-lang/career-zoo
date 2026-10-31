@@ -1,0 +1,45 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from career_zoo.builder import build_webapp
+from career_zoo.engine import score_answers, simulate_distribution
+from career_zoo.spec import DEFAULT_RUN, PROJECT_ROOT, compile_spec
+from career_zoo.validation import validate_spec
+
+
+class HarnessTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.spec = compile_spec(DEFAULT_RUN)
+
+    def test_spec_is_valid(self) -> None:
+        self.assertEqual(validate_spec(self.spec, PROJECT_ROOT), [])
+
+    def test_scoring_is_deterministic(self) -> None:
+        answers = [question["options"][0]["id"] for question in self.spec["scoredQuestions"]]
+        first = score_answers(self.spec, answers)
+        second = score_answers(self.spec, answers)
+        self.assertEqual(first, second)
+
+    def test_every_result_is_reachable_and_balanced(self) -> None:
+        report = simulate_distribution(self.spec)
+        self.assertEqual(report["total"], 65_536)
+        for item in report["distribution"].values():
+            self.assertGreaterEqual(item["percent"], 10)
+            self.assertLessEqual(item["percent"], 25)
+
+    def test_build_contains_required_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            build_webapp(self.spec, output)
+            for relative in ("index.html", "styles.css", "app.js", "test-spec.json"):
+                self.assertTrue((output / relative).is_file())
+            self.assertEqual(len(list((output / "assets").glob("*.png"))), 6)
+
+
+if __name__ == "__main__":
+    unittest.main()
+

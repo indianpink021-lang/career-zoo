@@ -1,0 +1,21 @@
+{
+  "assignment": {
+    "theme": "나만의 커스텀 하네스 제작",
+    "required_interview_rounds": 8,
+    "required_submissions": [
+      "산출물 스크린샷 또는 파일",
+      "GitHub 저장소 링크"
+    ]
+  },
+  "product": {
+    "name": "나의 다음 직업 찾기",
+    "summary": "10개 이내의 질문으로 다음 직업 성향을 작은 동물 캐릭터로 발견하는 모바일 진로 탐색 테스트"
+  },
+  "source_documents": [
+    "docs/assignment-brief.md",
+    "docs/product-brief.md",
+    "docs/prd.md",
+    "docs/user-stories.md",
+    "docs/harness-design.md"
+  ]
+}
