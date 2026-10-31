@@ -38,6 +38,8 @@ class HarnessTest(unittest.TestCase):
             for relative in ("index.html", "styles.css", "app.js", "test-spec.json"):
                 self.assertTrue((output / relative).is_file())
             self.assertEqual(len(list((output / "assets").glob("*.png"))), 6)
+            self.assertTrue((output / "assets" / "fonts" / "Hakgyoansim-Dunggeunmiso-TTF-B.ttf").is_file())
+            self.assertTrue((output / "assets" / "fonts" / "OFL.txt").is_file())
 
 
 if __name__ == "__main__":

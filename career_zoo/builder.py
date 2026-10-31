@@ -20,4 +20,7 @@ def build_webapp(spec: dict[str, Any], output_dir: Path) -> None:
         source = PROJECT_ROOT / archetype["asset"]
         destination = output_dir / "assets" / source.name
         shutil.copy2(source, destination)
+    font_source = PROJECT_ROOT / "assets" / "fonts"
+    if font_source.exists():
+        shutil.copytree(font_source, output_dir / "assets" / "fonts", dirs_exist_ok=True)
 
