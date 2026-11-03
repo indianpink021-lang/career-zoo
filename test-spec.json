@@ -328,23 +328,11 @@
     },
     {
       "id": "q04_satisfying_day",
-      "prompt": "하루 일을 마치며,\n‘오늘 좀 괜찮았다’고 느끼는 순간은?",
+      "prompt": "안정적인 월급은 조금 줄지만,\n내 방식대로 작은 일을 시작할 기회가 생겼다.",
       "options": [
         {
           "id": "q04_a",
-          "label": "복잡했던 계획과 기준이 드디어 정리됐을 때",
-          "archetype": "planner_hedgehog",
-          "weights": {
-            "focus": 1,
-            "mode": 1,
-            "expression": -2,
-            "change": -1,
-            "collaboration": 0
-          }
-        },
-        {
-          "id": "q04_b",
-          "label": "내가 만든 것이 실제로 잘 돌아갈 때",
+          "label": "작게 시험해보고 가능성이 보이면 키운다",
           "archetype": "maker_hamster",
           "weights": {
             "focus": 2,
@@ -352,11 +340,29 @@
             "expression": -1,
             "change": 1,
             "collaboration": -1
+          },
+          "signals": {
+            "independence": 2
+          }
+        },
+        {
+          "id": "q04_b",
+          "label": "고객과 비용부터 따져본 뒤 결정한다",
+          "archetype": "planner_hedgehog",
+          "weights": {
+            "focus": 1,
+            "mode": 1,
+            "expression": -2,
+            "change": -1,
+            "collaboration": 0
+          },
+          "signals": {
+            "independence": 1
           }
         },
         {
           "id": "q04_c",
-          "label": "흐릿했던 아이디어가 멋진 형태를 갖췄을 때",
+          "label": "내 취향과 이름을 건 일이라면 도전한다",
           "archetype": "creator_chinchilla",
           "weights": {
             "focus": -1,
@@ -364,11 +370,15 @@
             "expression": 2,
             "change": 2,
             "collaboration": -1
+          },
+          "signals": {
+            "independence": 2,
+            "visibility": 1
           }
         },
         {
           "id": "q04_d",
-          "label": "누군가가 내 도움으로 한결 편해졌을 때",
+          "label": "수입이 불안정하다면 하지 않는다",
           "archetype": "supporter_otter",
           "weights": {
             "focus": -2,
@@ -376,6 +386,9 @@
             "expression": 0,
             "change": -2,
             "collaboration": 2
+          },
+          "signals": {
+            "independence": -2
           }
         }
       ]
@@ -490,11 +503,11 @@
     },
     {
       "id": "q07_dream_task",
-      "prompt": "아무도 재촉하지 않는다면,\n어떤 일을 골라 해보고 싶나요?",
+      "prompt": "일이 잘 굴러가고 있을 때,\n가장 편한 자리는 어디인가요?",
       "options": [
         {
           "id": "q07_a",
-          "label": "아직 답이 없는 주제를 깊게 조사하기",
+          "label": "새로운 단서를 찾는 전문 실무자",
           "archetype": "explorer_rabbit",
           "weights": {
             "focus": 0,
@@ -502,11 +515,14 @@
             "expression": -1,
             "change": 2,
             "collaboration": -1
+          },
+          "signals": {
+            "leadership": -1
           }
         },
         {
           "id": "q07_b",
-          "label": "쓸모 있는 제품이나 도구를 직접 만들기",
+          "label": "직접 만들고 고치는 전문 실무자",
           "archetype": "maker_hamster",
           "weights": {
             "focus": 2,
@@ -514,41 +530,15 @@
             "expression": -1,
             "change": 1,
             "collaboration": -1
+          },
+          "signals": {
+            "leadership": -1,
+            "independence": 1
           }
         },
         {
           "id": "q07_c",
-          "label": "사람들이 기억할 콘텐츠나 경험 만들기",
-          "archetype": "creator_chinchilla",
-          "weights": {
-            "focus": -1,
-            "mode": -1,
-            "expression": 2,
-            "change": 2,
-            "collaboration": -1
-          }
-        },
-        {
-          "id": "q07_d",
-          "label": "누군가가 성장하도록 곁에서 돕기",
-          "archetype": "supporter_otter",
-          "weights": {
-            "focus": -2,
-            "mode": -1,
-            "expression": 0,
-            "change": -2,
-            "collaboration": 2
-          }
-        }
-      ]
-    },
-    {
-      "id": "q08_next_job",
-      "prompt": "다음 직업에서 한 가지를 더 가질 수 있다면,\n무엇을 고르고 싶나요?",
-      "options": [
-        {
-          "id": "q08_a",
-          "label": "복잡한 판을 정리하고 결정할 권한",
+          "label": "최종 결정을 내리고 방향을 잡는 책임자",
           "archetype": "planner_hedgehog",
           "weights": {
             "focus": 1,
@@ -556,11 +546,14 @@
             "expression": -2,
             "change": -1,
             "collaboration": 0
+          },
+          "signals": {
+            "leadership": 2
           }
         },
         {
-          "id": "q08_b",
-          "label": "다양한 사람과 목표를 함께 만드는 역할",
+          "id": "q07_d",
+          "label": "사람들이 잘 움직이도록 돕는 조율자",
           "archetype": "connector_squirrel",
           "weights": {
             "focus": -2,
@@ -568,23 +561,50 @@
             "expression": 1,
             "change": 0,
             "collaboration": 2
+          },
+          "signals": {
+            "leadership": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q08_next_job",
+      "prompt": "사람들 앞에 내 취향과 생각을\n꾸준히 드러내는 일은 어떤가요?",
+      "options": [
+        {
+          "id": "q08_a",
+          "label": "반응이 올수록 더 신나고 할 말이 많아진다",
+          "archetype": "connector_squirrel",
+          "weights": {
+            "focus": -2,
+            "mode": 1,
+            "expression": 1,
+            "change": 0,
+            "collaboration": 2
+          },
+          "signals": {
+            "visibility": 2
+          }
+        },
+        {
+          "id": "q08_b",
+          "label": "전문적으로 아는 주제가 있다면 해볼 만하다",
+          "archetype": "explorer_rabbit",
+          "weights": {
+            "focus": 0,
+            "mode": -2,
+            "expression": -1,
+            "change": 2,
+            "collaboration": -1
+          },
+          "signals": {
+            "visibility": 1
           }
         },
         {
           "id": "q08_c",
-          "label": "사람에게 도움이 된다는 분명한 감각",
-          "archetype": "supporter_otter",
-          "weights": {
-            "focus": -2,
-            "mode": -1,
-            "expression": 0,
-            "change": -2,
-            "collaboration": 2
-          }
-        },
-        {
-          "id": "q08_d",
-          "label": "새로운 것을 내 방식대로 표현할 자유",
+          "label": "얼굴보다 내가 만든 결과물을 보여주고 싶다",
           "archetype": "creator_chinchilla",
           "weights": {
             "focus": -1,
@@ -592,6 +612,24 @@
             "expression": 2,
             "change": 2,
             "collaboration": -1
+          },
+          "signals": {
+            "visibility": 1
+          }
+        },
+        {
+          "id": "q08_d",
+          "label": "가능하면 조용히 내 일에 집중하고 싶다",
+          "archetype": "supporter_otter",
+          "weights": {
+            "focus": -2,
+            "mode": -1,
+            "expression": 0,
+            "change": -2,
+            "collaboration": 2
+          },
+          "signals": {
+            "visibility": -2
           }
         }
       ]
@@ -600,7 +638,7 @@
   "archetypes": [
     {
       "id": "explorer_rabbit",
-      "name": "탐색 토끼",
+      "name": "탐색하는 토끼",
       "traits": [
         "관찰",
         "조사",
@@ -648,15 +686,37 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "시장조사원",
+          "정책·사회조사 연구원",
+          "상품 바이어·MD"
+        ],
+        "independent": [
+          "프리랜서 리서처",
+          "전문 큐레이션 사업자",
+          "리서치 컨설턴트"
+        ],
+        "public": [
+          "리뷰·정보 콘텐츠 크리에이터",
+          "전문 분야 해설자",
+          "리서치 기반 유튜버"
+        ],
+        "leadership": [
+          "리서치 프로젝트 책임자",
+          "인사이트 팀 리더",
+          "신사업 탐색 책임자"
+        ]
+      },
       "bridge_theme": "이미 가진 경험은 좋은 질문을 만들고 단서를 읽는 현장 지식으로 옮겨갈 수 있어요.",
       "draining_environment": "조사할 틈도 없이 ‘원래 이렇게 해요’만 반복되면 토끼굴을 파고 사라지고 싶어져요.",
-      "alt": "여러 메모와 돋보기를 들고 호기심 가득한 표정으로 단서를 찾는 탐색 토끼",
+      "alt": "여러 메모와 돋보기를 들고 호기심 가득한 표정으로 단서를 찾는 탐색하는 토끼",
       "asset": "assets/characters/explorer_rabbit.png",
       "accent": "#FF8D78"
     },
     {
       "id": "maker_hamster",
-      "name": "뚝딱 햄스터",
+      "name": "뚝딱 만드는 햄스터",
       "traits": [
         "제작",
         "자동화",
@@ -704,15 +764,37 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "품질관리 기술자",
+          "생산·공정 개선 담당",
+          "설비·장비 기술자"
+        ],
+        "independent": [
+          "타일·인테리어 시공자",
+          "수리·제작 1인 사업자",
+          "공방 운영자"
+        ],
+        "public": [
+          "DIY·기술 콘텐츠 크리에이터",
+          "제작 과정 유튜버",
+          "도구 리뷰어"
+        ],
+        "leadership": [
+          "현장 프로젝트 책임자",
+          "생산 운영 관리자",
+          "서비스 운영 리드"
+        ]
+      },
       "bridge_theme": "이미 경험한 현실의 제약은 무엇을 어떻게 만들어야 실제로 굴러가는지 아는 자산이 될 수 있어요.",
       "draining_environment": "결정 없이 회의만 세 시간째면 볼주머니에 미완성 할 일만 계속 쌓여요.",
-      "alt": "작은 공구와 노트북을 앞에 두고 무언가를 빠르게 조립하는 뚝딱 햄스터",
+      "alt": "작은 공구와 노트북을 앞에 두고 무언가를 빠르게 조립하는 뚝딱 만드는 햄스터",
       "asset": "assets/characters/maker_hamster.png",
       "accent": "#FF9F1C"
     },
     {
       "id": "planner_hedgehog",
-      "name": "기획 고슴도치",
+      "name": "계획하는 고슴도치",
       "traits": [
         "구조화",
         "판단",
@@ -760,15 +842,37 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "PMO 실무자",
+          "품질·규정 관리 담당",
+          "생산·운영 기획자"
+        ],
+        "independent": [
+          "업무 운영 컨설턴트",
+          "전문 서비스 사업자",
+          "프랜차이즈 운영자"
+        ],
+        "public": [
+          "커리어·생산성 크리에이터",
+          "지식 콘텐츠 기획자",
+          "강의·뉴스레터 운영자"
+        ],
+        "leadership": [
+          "프로젝트 매니저",
+          "사업 운영 책임자",
+          "조직 운영 관리자"
+        ]
+      },
       "bridge_theme": "지금까지 익힌 업무 맥락은 판단 기준과 현실적인 우선순위를 세우는 재료가 될 수 있어요.",
       "draining_environment": "목표는 매일 바뀌는데 모두가 ‘일단 열심히’를 외치면 가시가 자동으로 곤두서요.",
-      "alt": "복잡한 메모를 가지런히 정리하며 우선순위를 표시하는 기획 고슴도치",
+      "alt": "복잡한 메모를 가지런히 정리하며 우선순위를 표시하는 계획하는 고슴도치",
       "asset": "assets/characters/planner_hedgehog.png",
       "accent": "#A978E8"
     },
     {
       "id": "connector_squirrel",
-      "name": "연결 다람쥐",
+      "name": "연결하는 다람쥐",
       "traits": [
         "설득",
         "조율",
@@ -816,15 +920,37 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "채용 코디네이터",
+          "파트너십 매니저",
+          "고객 성공 담당"
+        ],
+        "independent": [
+          "행사·커뮤니티 기획자",
+          "영업 대행 사업자",
+          "인재 매칭 컨설턴트"
+        ],
+        "public": [
+          "인터뷰 콘텐츠 크리에이터",
+          "라이브 커머스 호스트",
+          "커뮤니티 인플루언서"
+        ],
+        "leadership": [
+          "커뮤니티 리드",
+          "세일즈 팀장",
+          "조직문화 책임자"
+        ]
+      },
       "bridge_theme": "현재 분야에서 만난 사람과 이해관계의 경험은 서로 다른 입장을 연결하는 번역 능력으로 이어질 수 있어요.",
       "draining_environment": "정보를 꽁꽁 숨긴 채 각자 자기 도토리만 지키는 팀에서는 꼬리가 축 처져요.",
-      "alt": "여러 색의 실과 도토리 메모를 이어 사람들을 연결하는 연결 다람쥐",
+      "alt": "여러 색의 실과 도토리 메모를 이어 사람들을 연결하는 연결하는 다람쥐",
       "asset": "assets/characters/connector_squirrel.png",
       "accent": "#49A96C"
     },
     {
       "id": "creator_chinchilla",
-      "name": "창작 친칠라",
+      "name": "창작하는 친칠라",
       "traits": [
         "표현",
         "감각",
@@ -872,15 +998,37 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "브랜드 디자이너",
+          "비주얼 머천다이저",
+          "콘텐츠 에디터"
+        ],
+        "independent": [
+          "네일 아티스트",
+          "플로리스트·공방 운영자",
+          "소규모 브랜드 창업자"
+        ],
+        "public": [
+          "뷰티·라이프스타일 크리에이터",
+          "디자인 인플루언서",
+          "영상 콘텐츠 크리에이터"
+        ],
+        "leadership": [
+          "크리에이티브 디렉터",
+          "브랜드 책임자",
+          "캠페인 리드"
+        ]
+      },
       "bridge_theme": "지금까지 쌓은 분야 지식은 남들이 쉽게 흉내 내기 어려운 소재와 관점으로 다시 표현될 수 있어요.",
       "draining_environment": "어제 만든 것과 똑같이, 이유도 묻지 말고 만들라는 날이 이어지면 털빛이 흐려져요.",
-      "alt": "러프한 스케치와 색종이에 둘러싸여 새로운 이미지를 만드는 창작 친칠라",
+      "alt": "러프한 스케치와 색종이에 둘러싸여 새로운 이미지를 만드는 창작하는 친칠라",
       "asset": "assets/characters/creator_chinchilla.png",
       "accent": "#5E91D8"
     },
     {
       "id": "supporter_otter",
-      "name": "돌봄 수달",
+      "name": "돌보는 수달",
       "traits": [
         "공감",
         "지원",
@@ -928,9 +1076,31 @@
           ]
         }
       ],
+      "career_tracks": {
+        "stable": [
+          "교육 운영자",
+          "환자·고객 경험 코디네이터",
+          "직원 온보딩 담당"
+        ],
+        "independent": [
+          "코칭·교육 서비스 운영자",
+          "반려동물 돌봄 사업자",
+          "지역 돌봄 프로그램 운영자"
+        ],
+        "public": [
+          "교육 콘텐츠 크리에이터",
+          "웰니스 크리에이터",
+          "상담·정보 콘텐츠 운영자"
+        ],
+        "leadership": [
+          "교육 프로그램 책임자",
+          "돌봄 서비스 운영 리드",
+          "구성원 경험 팀장"
+        ]
+      },
       "bridge_theme": "현재 분야에서 사람들의 어려움을 가까이 본 경험은 더 나은 지원과 성장 경험을 설계하는 감각이 될 수 있어요.",
       "draining_environment": "사람을 숫자로만 보고 도움을 전부 개인의 몫으로 돌리는 곳에서는 물 밖에 나온 수달처럼 말라가요.",
-      "alt": "작은 안내판을 들고 옆 동물의 성장을 다정하게 돕는 돌봄 수달",
+      "alt": "작은 안내판을 들고 옆 동물의 성장을 다정하게 돕는 돌보는 수달",
       "asset": "assets/characters/supporter_otter.png",
       "accent": "#65C9A7"
     }
