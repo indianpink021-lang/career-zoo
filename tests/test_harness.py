@@ -61,11 +61,14 @@ class HarnessTest(unittest.TestCase):
                 "test_complete",
                 "result_image_save",
                 "test_restart",
+                "result_restore",
             ):
                 self.assertIn(event_name, javascript)
             self.assertIn("navigator.canShare", javascript)
             self.assertIn("navigator.share", javascript)
             self.assertIn("image-save-dialog", javascript)
+            self.assertIn("KAKAOTALK", javascript)
+            self.assertIn("restoreResultFromUrl", javascript)
             self.assertIn("image-save-dialog", (output / "styles.css").read_text(encoding="utf-8"))
 
 
