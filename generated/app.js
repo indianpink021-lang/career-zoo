@@ -1,9 +1,23 @@
 "use strict";
 
-window.dataLayer = window.dataLayer || [];
-window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-window.gtag("js", new Date());
-window.gtag("config", "G-WHM8Y81MM2");
+const GA_MEASUREMENT_ID = "G-WHM8Y81MM2";
+const pageParameters = new URLSearchParams(window.location.search);
+const qaMode = pageParameters.get("qa") === "1";
+const localMode = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+const analyticsEnabled = !qaMode && !localMode;
+
+if (analyticsEnabled) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.append(analyticsScript);
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID);
+} else {
+  window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+}
 
 const app = document.querySelector("#app");
 const toast = document.querySelector("#toast");
@@ -26,7 +40,7 @@ const escapeHtml = (value) => String(value)
   .replaceAll("'", "&#039;");
 
 function trackEvent(name, parameters = {}) {
-  if (typeof window.gtag !== "function") return;
+  if (!analyticsEnabled || typeof window.gtag !== "function") return;
   window.gtag("event", name, parameters);
 }
 

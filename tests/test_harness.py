@@ -54,7 +54,10 @@ class HarnessTest(unittest.TestCase):
             self.assertTrue((output / "assets" / "fonts" / "OFL.txt").is_file())
             html = (output / "index.html").read_text(encoding="utf-8")
             javascript = (output / "app.js").read_text(encoding="utf-8")
-            self.assertIn("G-WHM8Y81MM2", html)
+            self.assertNotIn("googletagmanager.com", html)
+            self.assertIn("G-WHM8Y81MM2", javascript)
+            self.assertIn('pageParameters.get("qa") === "1"', javascript)
+            self.assertIn('"127.0.0.1"', javascript)
             for event_name in (
                 "test_start",
                 "question_answer",
