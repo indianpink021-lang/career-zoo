@@ -52,6 +52,17 @@ class HarnessTest(unittest.TestCase):
             self.assertEqual(len(list((output / "assets").glob("*.png"))), 6)
             self.assertTrue((output / "assets" / "fonts" / "Hakgyoansim-Dunggeunmiso-TTF-B.ttf").is_file())
             self.assertTrue((output / "assets" / "fonts" / "OFL.txt").is_file())
+            html = (output / "index.html").read_text(encoding="utf-8")
+            javascript = (output / "app.js").read_text(encoding="utf-8")
+            self.assertIn("G-WHM8Y81MM2", html)
+            for event_name in (
+                "test_start",
+                "question_answer",
+                "test_complete",
+                "result_image_save",
+                "test_restart",
+            ):
+                self.assertIn(event_name, javascript)
 
 
 if __name__ == "__main__":

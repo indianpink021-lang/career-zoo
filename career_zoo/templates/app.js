@@ -1,5 +1,10 @@
 "use strict";
 
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+window.gtag("js", new Date());
+window.gtag("config", "G-WHM8Y81MM2");
+
 const app = document.querySelector("#app");
 const toast = document.querySelector("#toast");
 
@@ -19,6 +24,11 @@ const escapeHtml = (value) => String(value)
   .replaceAll(">", "&gt;")
   .replaceAll('"', "&quot;")
   .replaceAll("'", "&#039;");
+
+function trackEvent(name, parameters = {}) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", name, parameters);
+}
 
 function assetUrl(path) {
   return `assets/${path.split("/").at(-1)}`;
@@ -62,6 +72,7 @@ function renderIntro() {
       <p class="disclaimer">재미를 위한 자기 탐색 콘텐츠예요. 진로를 대신 결정하지 않아요.</p>
     </section>`;
   document.querySelector("#start-button").addEventListener("click", () => {
+    trackEvent("test_start", { question_count: allQuestions().length });
     state.step = 0;
     renderQuestion();
   });
@@ -110,6 +121,12 @@ function renderQuestion() {
   document.querySelector("#back-button").addEventListener("click", goBack);
   document.querySelector("#skip-button")?.addEventListener("click", () => {
     state.profile = "other";
+    trackEvent("question_answer", {
+      question_id: question.id,
+      option_id: "other",
+      question_number: state.step + 1,
+      question_type: "profile",
+    });
     advance();
   });
   focusMain();
@@ -121,6 +138,12 @@ function chooseOption(question, optionId, isProfile) {
   state.locked = true;
   if (isProfile) state.profile = optionId;
   else state.answers[question.id] = optionId;
+  trackEvent("question_answer", {
+    question_id: question.id,
+    option_id: optionId,
+    question_number: state.step + 1,
+    question_type: isProfile ? "profile" : "scored",
+  });
   document.querySelectorAll("[data-option]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.option === optionId));
     button.disabled = true;
@@ -271,6 +294,10 @@ function dimensionRows() {
 function renderResult() {
   state.screen = "result";
   const item = state.result.archetype;
+  trackEvent("test_complete", {
+    archetype_id: item.id,
+    question_count: allQuestions().length,
+  });
   const careerCards = state.result.careers.map((career) => `
     <div class="career-card">
       <span class="career-mode">${escapeHtml(career.label)}</span>
@@ -299,6 +326,10 @@ function renderResult() {
 }
 
 function restart() {
+  trackEvent("test_restart", {
+    from_screen: state.screen,
+    archetype_id: state.result?.archetype?.id || "none",
+  });
   state.step = 0;
   state.profile = null;
   state.answers = {};
@@ -395,6 +426,7 @@ function drawCharacter(context, image, id, x, y, maxWidth, maxHeight) {
 
 async function downloadResultCard() {
   const item = state.result.archetype;
+  trackEvent("result_image_save", { archetype_id: item.id });
   const canvas = document.createElement("canvas");
   canvas.width = state.spec.resultCard.width;
   canvas.height = state.spec.resultCard.height;
