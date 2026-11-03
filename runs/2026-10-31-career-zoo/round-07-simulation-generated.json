@@ -4,34 +4,34 @@
   "seed": null,
   "distribution": {
     "explorer_rabbit": {
-      "name": "탐색 토끼",
-      "count": 12238,
-      "percent": 18.67
+      "name": "탐색하는 토끼",
+      "count": 11169,
+      "percent": 17.04
     },
     "maker_hamster": {
-      "name": "뚝딱 햄스터",
-      "count": 9158,
-      "percent": 13.97
+      "name": "뚝딱 만드는 햄스터",
+      "count": 9225,
+      "percent": 14.08
     },
     "planner_hedgehog": {
-      "name": "기획 고슴도치",
-      "count": 13613,
-      "percent": 20.77
+      "name": "계획하는 고슴도치",
+      "count": 12315,
+      "percent": 18.79
     },
     "connector_squirrel": {
-      "name": "연결 다람쥐",
-      "count": 12699,
-      "percent": 19.38
+      "name": "연결하는 다람쥐",
+      "count": 10480,
+      "percent": 15.99
     },
     "creator_chinchilla": {
-      "name": "창작 친칠라",
-      "count": 9822,
-      "percent": 14.99
+      "name": "창작하는 친칠라",
+      "count": 11445,
+      "percent": 17.46
     },
     "supporter_otter": {
-      "name": "돌봄 수달",
-      "count": 8006,
-      "percent": 12.22
+      "name": "돌보는 수달",
+      "count": 10902,
+      "percent": 16.64
     }
   }
 }

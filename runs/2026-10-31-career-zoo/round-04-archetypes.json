@@ -7,7 +7,7 @@
   "archetypes": [
     {
       "id": "explorer_rabbit",
-      "name": "탐색 토끼",
+      "name": "탐색하는 토끼",
       "traits": ["관찰", "조사", "호기심"],
       "vector": {"focus": 0, "mode": -2, "expression": -1, "change": 2, "collaboration": -1},
       "career_area": "사용자 이해",
@@ -15,7 +15,7 @@
     },
     {
       "id": "maker_hamster",
-      "name": "뚝딱 햄스터",
+      "name": "뚝딱 만드는 햄스터",
       "traits": ["제작", "자동화", "개선"],
       "vector": {"focus": 2, "mode": 2, "expression": -1, "change": 1, "collaboration": -1},
       "career_area": "제품 만들기",
@@ -23,7 +23,7 @@
     },
     {
       "id": "planner_hedgehog",
-      "name": "기획 고슴도치",
+      "name": "계획하는 고슴도치",
       "traits": ["구조화", "판단", "우선순위"],
       "vector": {"focus": 1, "mode": 1, "expression": -2, "change": -1, "collaboration": 0},
       "career_area": "문제 구조화",
@@ -31,7 +31,7 @@
     },
     {
       "id": "connector_squirrel",
-      "name": "연결 다람쥐",
+      "name": "연결하는 다람쥐",
       "traits": ["설득", "조율", "관계 형성"],
       "vector": {"focus": -2, "mode": 1, "expression": 1, "change": 0, "collaboration": 2},
       "career_area": "관계와 성장",
@@ -39,7 +39,7 @@
     },
     {
       "id": "creator_chinchilla",
-      "name": "창작 친칠라",
+      "name": "창작하는 친칠라",
       "traits": ["표현", "감각", "새로운 해석"],
       "vector": {"focus": -1, "mode": -1, "expression": 2, "change": 2, "collaboration": -1},
       "career_area": "아이디어 표현",
@@ -47,7 +47,7 @@
     },
     {
       "id": "supporter_otter",
-      "name": "돌봄 수달",
+      "name": "돌보는 수달",
       "traits": ["공감", "지원", "성장 촉진"],
       "vector": {"focus": -2, "mode": -1, "expression": 0, "change": -2, "collaboration": 2},
       "career_area": "사람의 성장",

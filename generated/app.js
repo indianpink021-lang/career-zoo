@@ -48,7 +48,7 @@ function renderIntro() {
   app.innerHTML = `
     <section class="screen hero" aria-labelledby="intro-title">
       <p class="eyebrow">NEXT CAREER TEST</p>
-      <img class="hero-cast" src="assets/explorer_rabbit.png" alt="지도를 살펴보는 탐색 토끼" />
+      <img class="hero-cast" src="assets/explorer_rabbit.png" alt="지도를 살펴보는 탐색하는 토끼" />
       <div class="hero-heading">
         <h1 id="intro-title"><span>나의</span><span>다음 직업 찾기</span></h1>
         <p class="hero-copy">지금 일은 잠깐 내려두고,<br />다음 직업의 동물을 만나보세요.</p>
@@ -174,10 +174,12 @@ function calculateResult() {
 
   const votes = Object.fromEntries(spec.archetypes.map((item) => [item.id, 0]));
   const totals = Object.fromEntries(dimensions.map((dimension) => [dimension, 0]));
+  const signals = { independence: 0, leadership: 0, visibility: 0 };
   spec.scoredQuestions.forEach((question) => {
     const option = lookup.get(state.answers[question.id]);
     votes[option.archetype] += 1;
     dimensions.forEach((dimension) => { totals[dimension] += option.weights[dimension]; });
+    Object.entries(option.signals || {}).forEach(([signal, value]) => { signals[signal] += value; });
   });
   const averages = Object.fromEntries(dimensions.map((dimension) => [dimension, totals[dimension] / spec.scoredQuestions.length]));
   const normalized = Object.fromEntries(spec.archetypes.map((item) => [item.id, votes[item.id] / appearances[item.id]]));
@@ -194,7 +196,48 @@ function calculateResult() {
   const strongest = dimensions.reduce((winner, dimension) => Math.abs(averages[dimension]) > Math.abs(averages[winner]) ? dimension : winner, dimensions[0]);
   const dimension = spec.dimensions.find((item) => item.id === strongest);
   const secondary = averages[strongest] >= 0 ? dimension.positive : dimension.negative;
-  return { archetype: candidates[0], averages, secondary };
+  const archetype = candidates[0];
+  return { archetype, averages, secondary, signals, careers: chooseCareerPaths(archetype, signals) };
+}
+
+const CAREER_MODE_LABELS = {
+  stable: "전문 실무",
+  independent: "독립·사업",
+  public: "대중·콘텐츠",
+  leadership: "리더십",
+};
+
+// A few characters were cut from a shared illustration sheet. These small
+// insets hide neighboring-sheet fragments without trimming the character.
+const CHARACTER_CROPS = {
+  maker_hamster: { top: 0, right: 0, bottom: 18, left: 0 },
+  creator_chinchilla: { top: 14, right: 0, bottom: 0, left: 0 },
+};
+
+function characterCrop(id) {
+  return CHARACTER_CROPS[id] || { top: 0, right: 0, bottom: 0, left: 0 };
+}
+
+function characterCropStyle(id) {
+  const crop = characterCrop(id);
+  return `--crop-top:${crop.top}px;--crop-right:${crop.right}px;--crop-bottom:${crop.bottom}px;--crop-left:${crop.left}px`;
+}
+
+function chooseCareerPaths(archetype, signals) {
+  const eligible = [
+    { id: "independent", score: signals.independence },
+    { id: "public", score: signals.visibility },
+    { id: "leadership", score: signals.leadership },
+  ].filter((entry) => entry.score >= 2).sort((a, b) => b.score - a.score).slice(0, 2);
+  const modes = ["stable", ...eligible.map((entry) => entry.id)];
+  while (modes.length < 3) modes.push("stable");
+  const used = {};
+  return modes.map((mode) => {
+    const choices = archetype.career_tracks[mode];
+    const index = used[mode] || 0;
+    used[mode] = index + 1;
+    return { mode, label: CAREER_MODE_LABELS[mode], title: choices[index % choices.length] };
+  });
 }
 
 function bridgeCopy(archetype) {
@@ -228,18 +271,22 @@ function dimensionRows() {
 function renderResult() {
   state.screen = "result";
   const item = state.result.archetype;
-  const keywords = item.career_groups.map((group) => `<span class="keyword">${escapeHtml(group.examples[0])}</span>`).join("");
+  const careerCards = state.result.careers.map((career) => `
+    <div class="career-card">
+      <span class="career-mode">${escapeHtml(career.label)}</span>
+      <strong>${escapeHtml(career.title)}</strong>
+    </div>`).join("");
   app.innerHTML = `
     <section class="screen result-screen" style="--result-accent:${item.accent};--result-soft:${item.accent}20" aria-labelledby="result-title">
       <header class="result-hero">
         <p class="eyebrow">당신의 다음 직업 동물은</p>
-        <img class="result-character" src="${assetUrl(item.asset)}" alt="${escapeHtml(item.alt)}" />
+        <img class="result-character" style="${characterCropStyle(item.id)}" src="${assetUrl(item.asset)}" alt="${escapeHtml(item.alt)}" />
         <h1 class="result-name" id="result-title" tabindex="-1">${escapeHtml(item.name)}</h1>
         <p class="catchphrase">“${escapeHtml(item.catchphrase)}”</p>
         <div class="tag-row"><span class="tag">보조 성향 · ${escapeHtml(state.result.secondary)}</span></div>
       </header>
       <article class="result-section"><h3>이런 타입이에요</h3><p>${escapeHtml(item.description)}</p></article>
-      <article class="result-section career-section"><h3>슬쩍 구경해볼 직무군</h3><div class="keyword-row career-keywords">${keywords}</div></article>
+      <article class="result-section career-section"><h3>당신에게 열려 있는 세 갈래</h3><div class="career-paths">${careerCards}</div><p class="bridge-copy">${escapeHtml(bridgeCopy(item))}</p></article>
       <div class="result-actions">
         <button class="primary-button" type="button" id="save-card">결과 이미지 저장</button>
         <button class="text-button restart-button" type="button" id="restart">↻ 다시 해보기</button>
@@ -290,6 +337,62 @@ function wrapCanvasText(context, text, x, y, maxWidth, lineHeight, maxLines = 3)
   context.fillText(line, x, y + lineIndex * lineHeight);
 }
 
+function drawCareerCardTitle(context, text, x, maxWidth) {
+  context.font = "700 24px system-ui, sans-serif";
+  if (context.measureText(text).width <= maxWidth) {
+    context.fillText(text, x, 1131);
+    return;
+  }
+  const words = text.split(" ");
+  let lines;
+  if (words.length > 1) {
+    let best = 1;
+    let difference = Infinity;
+    for (let index = 1; index < words.length; index += 1) {
+      const left = words.slice(0, index).join(" ");
+      const right = words.slice(index).join(" ");
+      const nextDifference = Math.abs(left.length - right.length);
+      if (nextDifference < difference) {
+        difference = nextDifference;
+        best = index;
+      }
+    }
+    lines = [words.slice(0, best).join(" "), words.slice(best).join(" ")];
+  } else {
+    const characters = [...text];
+    const middle = Math.ceil(characters.length / 2);
+    lines = [characters.slice(0, middle).join(""), characters.slice(middle).join("")];
+  }
+  let size = 20;
+  context.font = `700 ${size}px system-ui, sans-serif`;
+  while (Math.max(...lines.map((line) => context.measureText(line).width)) > maxWidth && size > 14) {
+    size -= 1;
+    context.font = `700 ${size}px system-ui, sans-serif`;
+  }
+  context.fillText(lines[0], x, 1119);
+  context.fillText(lines[1], x, 1144);
+}
+
+function drawCharacter(context, image, id, x, y, maxWidth, maxHeight) {
+  const crop = characterCrop(id);
+  const sourceWidth = image.width - crop.left - crop.right;
+  const sourceHeight = image.height - crop.top - crop.bottom;
+  const scale = Math.min(maxWidth / sourceWidth, maxHeight / sourceHeight);
+  const drawWidth = sourceWidth * scale;
+  const drawHeight = sourceHeight * scale;
+  context.drawImage(
+    image,
+    crop.left,
+    crop.top,
+    sourceWidth,
+    sourceHeight,
+    x + (maxWidth - drawWidth) / 2,
+    y + (maxHeight - drawHeight) / 2,
+    drawWidth,
+    drawHeight,
+  );
+}
+
 async function downloadResultCard() {
   const item = state.result.archetype;
   const canvas = document.createElement("canvas");
@@ -311,12 +414,7 @@ async function downloadResultCard() {
   context.font = "700 28px system-ui, sans-serif";
   context.fillText("나의 다음 직업 찾기", 540, 145);
 
-  const maxW = 600;
-  const maxH = 520;
-  const scale = Math.min(maxW / image.width, maxH / image.height);
-  const drawW = image.width * scale;
-  const drawH = image.height * scale;
-  context.drawImage(image, (1080 - drawW) / 2, 180 + (520 - drawH) / 2, drawW, drawH);
+  drawCharacter(context, image, item.id, 240, 180, 600, 520);
 
   context.fillStyle = "#292725";
   context.font = '900 76px "Arial Rounded MT Bold", system-ui, sans-serif';
@@ -330,13 +428,12 @@ async function downloadResultCard() {
   context.font = "700 28px system-ui, sans-serif";
   context.fillText(`보조 성향 · ${state.result.secondary}`, 540, 993);
 
-  context.font = "700 27px system-ui, sans-serif";
   let x = 110;
-  item.career_groups.forEach((group) => {
+  state.result.careers.forEach((career) => {
     context.fillStyle = "#ffffff";
     roundedRect(context, x, 1080, 270, 82, 28);
     context.fillStyle = "#292725";
-    context.fillText(group.name, x + 135, 1131);
+    drawCareerCardTitle(context, career.title, x + 135, 230);
     x += 295;
   });
 

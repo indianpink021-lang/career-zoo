@@ -24,6 +24,18 @@ class HarnessTest(unittest.TestCase):
         second = score_answers(self.spec, answers)
         self.assertEqual(first, second)
 
+    def test_conditional_career_modes_are_gated(self) -> None:
+        quiet_answers = [question["options"][-1]["id"] for question in self.spec["scoredQuestions"]]
+        quiet_result = score_answers(self.spec, quiet_answers)
+        quiet_modes = {career["mode"] for career in quiet_result["careers"]}
+        self.assertNotIn("public", quiet_modes)
+        self.assertNotIn("independent", quiet_modes)
+
+        public_answers = [question["options"][0]["id"] for question in self.spec["scoredQuestions"]]
+        public_answers[-1] = "q08_a"
+        public_result = score_answers(self.spec, public_answers)
+        self.assertIn("public", {career["mode"] for career in public_result["careers"]})
+
     def test_every_result_is_reachable_and_balanced(self) -> None:
         report = simulate_distribution(self.spec)
         self.assertEqual(report["total"], 65_536)

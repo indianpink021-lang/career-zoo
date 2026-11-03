@@ -15,6 +15,35 @@ def _option_lookup(spec: dict[str, Any]) -> dict[str, dict[str, Any]]:
     }
 
 
+def choose_career_paths(archetype: dict[str, Any], signals: dict[str, int]) -> list[dict[str, str]]:
+    labels = {
+        "stable": "전문 실무",
+        "independent": "독립·사업",
+        "public": "대중·콘텐츠",
+        "leadership": "리더십",
+    }
+    eligible = sorted(
+        (
+            ("independent", signals["independence"]),
+            ("public", signals["visibility"]),
+            ("leadership", signals["leadership"]),
+        ),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+    modes = ["stable", *(mode for mode, score in eligible if score >= 2)][:3]
+    while len(modes) < 3:
+        modes.append("stable")
+    used: Counter[str] = Counter()
+    careers: list[dict[str, str]] = []
+    for mode in modes:
+        choices = archetype["career_tracks"][mode]
+        index = used[mode]
+        used[mode] += 1
+        careers.append({"mode": mode, "label": labels[mode], "title": choices[index % len(choices)]})
+    return careers
+
+
 def score_answers(spec: dict[str, Any], answer_ids: Iterable[str]) -> dict[str, Any]:
     answers = list(answer_ids)
     questions = spec["scoredQuestions"]
@@ -31,6 +60,7 @@ def score_answers(spec: dict[str, Any], answer_ids: Iterable[str]) -> dict[str, 
     )
     votes: Counter[str] = Counter()
     totals = {dimension: 0 for dimension in dimensions}
+    signals = {"independence": 0, "leadership": 0, "visibility": 0}
 
     for answer_id in answers:
         if answer_id not in lookup:
@@ -39,6 +69,8 @@ def score_answers(spec: dict[str, Any], answer_ids: Iterable[str]) -> dict[str, 
         votes[option["archetype"]] += 1
         for dimension in dimensions:
             totals[dimension] += option["weights"][dimension]
+        for signal, value in option.get("signals", {}).items():
+            signals[signal] += value
 
     normalized = {
         item["id"]: votes[item["id"]] / appearances[item["id"]]
@@ -69,6 +101,8 @@ def score_answers(spec: dict[str, Any], answer_ids: Iterable[str]) -> dict[str, 
         "secondary": secondary,
         "dimensionAverages": averages,
         "normalizedVotes": normalized,
+        "signals": signals,
+        "careers": choose_career_paths(winner, signals),
     }
 
 

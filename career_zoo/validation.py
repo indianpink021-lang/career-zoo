@@ -55,6 +55,11 @@ def validate_spec(spec: dict[str, Any], project_root: Path) -> list[str]:
             errors.append(f"캐릭터 이미지가 없습니다: {item.get('asset')}")
         if len(item.get("career_groups", [])) != 3:
             errors.append(f"{item['id']}의 추천 직무군은 정확히 3개여야 합니다.")
+        tracks = item.get("career_tracks", {})
+        if set(tracks) != {"stable", "independent", "public", "leadership"}:
+            errors.append(f"{item['id']}의 직업 경로 구성이 올바르지 않습니다.")
+        elif any(len(options) < 3 for options in tracks.values()):
+            errors.append(f"{item['id']}의 각 직업 경로에는 예시가 3개 이상 필요합니다.")
 
     return errors
 
