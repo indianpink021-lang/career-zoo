@@ -63,6 +63,10 @@ class HarnessTest(unittest.TestCase):
                 "test_restart",
             ):
                 self.assertIn(event_name, javascript)
+            self.assertIn("navigator.canShare", javascript)
+            self.assertIn("navigator.share", javascript)
+            self.assertIn("image-save-dialog", javascript)
+            self.assertIn("image-save-dialog", (output / "styles.css").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

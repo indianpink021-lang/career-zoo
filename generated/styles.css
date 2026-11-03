@@ -352,6 +352,33 @@ h1, h2, h3 {
 }
 
 .toast.is-visible { transform: translate(-50%, 0); }
+
+.image-save-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  overflow-y: auto;
+  background: rgba(41, 39, 37, 0.72);
+}
+
+.image-save-panel {
+  width: min(100%, 430px);
+  padding: 16px;
+  border-radius: 22px;
+  background: var(--paper);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+}
+
+.image-save-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.image-save-heading div { flex: 1; }
+.image-save-heading h2 { margin: 0 0 5px; font-size: 18px; line-height: 1.35; word-break: keep-all; }
+.image-save-heading p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; word-break: keep-all; }
+.image-save-close { flex: 0 0 auto; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; color: var(--ink); background: white; font-size: 28px; line-height: 1; cursor: pointer; }
+.image-save-panel img { display: block; width: 100%; height: auto; border-radius: 16px; background: white; -webkit-touch-callout: default; user-select: auto; }
+
 :focus-visible { outline: 3px solid #2266dd; outline-offset: 3px; }
 @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { to { transform: translateY(-9px); opacity: 0.45; } }

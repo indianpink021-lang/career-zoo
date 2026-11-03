@@ -424,6 +424,102 @@ function drawCharacter(context, image, id, x, y, maxWidth, maxHeight) {
   );
 }
 
+function canvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error("이미지를 만들지 못했습니다."));
+    }, "image/png");
+  });
+}
+
+function isMobileDevice() {
+  return navigator.userAgentData?.mobile === true
+    || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.hidden = true;
+  document.body.append(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  showToast("결과 이미지를 저장했어요.");
+}
+
+function showImageSavePreview(blob, item) {
+  const url = URL.createObjectURL(blob);
+  const dialog = document.createElement("div");
+  dialog.className = "image-save-dialog";
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-labelledby", "image-save-title");
+  dialog.innerHTML = `
+    <div class="image-save-panel">
+      <div class="image-save-heading">
+        <div>
+          <h2 id="image-save-title">이미지를 길게 눌러 저장하세요</h2>
+          <p>메뉴가 나타나면 ‘사진에 저장’ 또는 ‘이미지 저장’을 선택하세요.</p>
+        </div>
+        <button class="image-save-close" type="button" aria-label="저장용 이미지 닫기">×</button>
+      </div>
+      <img src="${url}" alt="${escapeHtml(item.name)} 결과 카드 저장용 이미지" />
+    </div>`;
+  document.body.append(dialog);
+
+  const closeButton = dialog.querySelector(".image-save-close");
+  const close = () => {
+    document.removeEventListener("keydown", handleKeydown);
+    dialog.remove();
+    URL.revokeObjectURL(url);
+    document.querySelector("#save-card")?.focus();
+  };
+  const handleKeydown = (event) => {
+    if (event.key === "Escape") close();
+  };
+  closeButton.addEventListener("click", close);
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) close();
+  });
+  document.addEventListener("keydown", handleKeydown);
+  closeButton.focus();
+}
+
+async function saveResultImage(blob, item) {
+  const filename = `나의-다음-직업-${item.name}.png`;
+  let file = null;
+  try {
+    file = new File([blob], filename, { type: "image/png" });
+  } catch (error) {
+    // Older in-app browsers may not expose the File constructor.
+  }
+
+  if (isMobileDevice()
+    && file
+    && typeof navigator.share === "function"
+    && navigator.canShare?.({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: `나의 다음 직업: ${item.name}` });
+      showToast("공유 메뉴에서 이미지 저장을 선택할 수 있어요.");
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+
+  if (isMobileDevice()) {
+    showImageSavePreview(blob, item);
+    return;
+  }
+
+  downloadBlob(blob, filename);
+}
+
 async function downloadResultCard() {
   const item = state.result.archetype;
   trackEvent("result_image_save", { archetype_id: item.id });
@@ -470,16 +566,12 @@ async function downloadResultCard() {
   context.font = "500 21px system-ui, sans-serif";
   context.fillText("재미를 위한 자기 탐색 콘텐츠예요. 진로를 대신 결정하지 않아요.", 540, 1225);
 
-  canvas.toBlob((blob) => {
-    if (!blob) return;
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `나의-다음-직업-${item.name}.png`;
-    anchor.click();
-    URL.revokeObjectURL(url);
-    showToast("결과 이미지를 저장했어요.");
-  }, "image/png");
+  try {
+    const blob = await canvasToBlob(canvas);
+    await saveResultImage(blob, item);
+  } catch (error) {
+    showToast("이미지 저장에 실패했어요. 잠시 후 다시 시도해주세요.");
+  }
 }
 
 loadSpec().catch((error) => {
