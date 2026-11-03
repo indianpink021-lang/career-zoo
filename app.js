@@ -49,7 +49,49 @@ async function loadSpec() {
   const response = await fetch("test-spec.json");
   if (!response.ok) throw new Error("test-spec.json을 불러오지 못했습니다.");
   state.spec = await response.json();
-  renderIntro();
+  if (!restoreResultFromUrl()) renderIntro();
+}
+
+function resultStatePayload() {
+  return { profile: state.profile, answers: state.answers };
+}
+
+function persistResultInUrl() {
+  const encoded = encodeURIComponent(window.btoa(JSON.stringify(resultStatePayload())));
+  const url = new URL(window.location.href);
+  url.hash = `result=${encoded}`;
+  window.history.replaceState(null, "", url);
+}
+
+function clearResultFromUrl() {
+  if (!window.location.hash.startsWith("#result=")) return;
+  const url = new URL(window.location.href);
+  url.hash = "";
+  window.history.replaceState(null, "", url);
+}
+
+function restoreResultFromUrl() {
+  const encoded = new URLSearchParams(window.location.hash.slice(1)).get("result");
+  if (!encoded) return false;
+  try {
+    const payload = JSON.parse(window.atob(decodeURIComponent(encoded)));
+    const profileOptions = new Set(state.spec.profileQuestions.flatMap((question) => question.options.map((option) => option.id)));
+    const validProfile = profileOptions.has(payload.profile) || payload.profile === "other";
+    const validAnswers = state.spec.scoredQuestions.every((question) => {
+      const selected = payload.answers?.[question.id];
+      return question.options.some((option) => option.id === selected);
+    });
+    if (!validProfile || !validAnswers) throw new Error("invalid result state");
+    state.profile = payload.profile;
+    state.answers = payload.answers;
+    state.result = calculateResult();
+    renderResult({ trackCompletion: false });
+    trackEvent("result_restore", { archetype_id: state.result.archetype.id });
+    return true;
+  } catch (error) {
+    clearResultFromUrl();
+    return false;
+  }
 }
 
 function renderIntro() {
@@ -291,13 +333,16 @@ function dimensionRows() {
   }).join("");
 }
 
-function renderResult() {
+function renderResult({ trackCompletion = true } = {}) {
   state.screen = "result";
   const item = state.result.archetype;
-  trackEvent("test_complete", {
-    archetype_id: item.id,
-    question_count: allQuestions().length,
-  });
+  persistResultInUrl();
+  if (trackCompletion) {
+    trackEvent("test_complete", {
+      archetype_id: item.id,
+      question_count: allQuestions().length,
+    });
+  }
   const careerCards = state.result.careers.map((career) => `
     <div class="career-card">
       <span class="career-mode">${escapeHtml(career.label)}</span>
@@ -334,6 +379,7 @@ function restart() {
   state.profile = null;
   state.answers = {};
   state.result = null;
+  clearResultFromUrl();
   renderIntro();
 }
 
@@ -439,6 +485,10 @@ function isMobileDevice() {
     || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 }
 
+function isKakaoInAppBrowser() {
+  return /KAKAOTALK/i.test(navigator.userAgent);
+}
+
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
@@ -454,6 +504,11 @@ function downloadBlob(blob, filename) {
 
 function showImageSavePreview(blob, item) {
   const url = URL.createObjectURL(blob);
+  const kakaoBrowser = isKakaoInAppBrowser();
+  const title = kakaoBrowser ? "카카오톡에서는 다른 브라우저로 열어주세요" : "이미지를 길게 눌러 저장하세요";
+  const description = kakaoBrowser
+    ? "우측 하단의 ⋮ 버튼을 누르고 ‘다른 브라우저로 열기’를 선택하세요. 현재 결과 화면이 그대로 이어집니다."
+    : "메뉴가 나타나면 ‘사진에 저장’ 또는 ‘이미지 저장’을 선택하세요.";
   const dialog = document.createElement("div");
   dialog.className = "image-save-dialog";
   dialog.setAttribute("role", "dialog");
@@ -463,8 +518,8 @@ function showImageSavePreview(blob, item) {
     <div class="image-save-panel">
       <div class="image-save-heading">
         <div>
-          <h2 id="image-save-title">이미지를 길게 눌러 저장하세요</h2>
-          <p>메뉴가 나타나면 ‘사진에 저장’ 또는 ‘이미지 저장’을 선택하세요.</p>
+          <h2 id="image-save-title">${title}</h2>
+          <p>${description}</p>
         </div>
         <button class="image-save-close" type="button" aria-label="저장용 이미지 닫기">×</button>
       </div>
