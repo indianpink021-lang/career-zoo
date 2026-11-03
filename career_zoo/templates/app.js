@@ -405,9 +405,6 @@ async function downloadResultCard() {
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = `${item.accent}24`;
   roundedRect(context, 70, 70, 940, 1210, 72);
-  context.strokeStyle = "#292725";
-  context.lineWidth = 7;
-  context.strokeRect(72, 72, 936, 1206);
 
   context.textAlign = "center";
   context.fillStyle = "#d65e4b";
