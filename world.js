@@ -315,11 +315,7 @@ function renderIntro() {
   app.innerHTML = `
     <section class="screen hero world-hero" aria-labelledby="intro-title">
       <p class="eyebrow">MY WORK FAIRY TALE</p>
-      <div class="world-cast" aria-hidden="true">
-        <span class="sprite-character" style="${spriteStyle(13)}"></span>
-        <span class="sprite-character" style="${spriteStyle(6)}"></span>
-        <span class="sprite-character" style="${spriteStyle(0)}"></span>
-      </div>
+      <img class="world-hero-art" src="assets/world_intro_group.png?v=20261104a" alt="인어와 숲속 안내자, 마법사가 함께 모인 모습" />
       <div class="hero-heading">
         <h1 id="intro-title"><span>내가 성과 내는</span><span>세계관 테스트</span></h1>
         <p class="hero-copy">나는 어떤 일과 환경에서 진짜 실력이 나올까?<br />동화 속 주인공에게 슬쩍 물어봤어요.</p>
