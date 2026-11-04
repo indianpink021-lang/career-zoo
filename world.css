@@ -1,0 +1,133 @@
+@import url("styles.css?v=20261104d");
+
+:root {
+  --world-navy: #536887;
+  --world-navy-soft: #eaf0f8;
+  --world-gold: #d9a441;
+  --world-lilac: #8f78ad;
+}
+
+.world-shell { --coral: var(--world-lilac); --coral-soft: #f2edf8; }
+
+.world-hero {
+  gap: clamp(16px, 2.8svh, 26px);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(209, 226, 244, 0.7), transparent 30%),
+    radial-gradient(circle at 86% 34%, rgba(233, 216, 242, 0.65), transparent 28%),
+    var(--paper);
+}
+
+.world-hero .eyebrow, .world-question .question-kicker { color: var(--world-lilac); }
+
+.world-cast {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: clamp(190px, 30svh, 260px);
+  margin-block: -4px;
+}
+
+.sprite-character {
+  --sprite-x: 0%;
+  --sprite-y: 0%;
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(138px, 39vw, 172px);
+  aspect-ratio: 1;
+  background-image: url("assets/world_characters.png");
+  background-repeat: no-repeat;
+  background-position: var(--sprite-x) var(--sprite-y);
+  background-size: 400% 400%;
+}
+
+.world-cast .sprite-character:nth-child(1) { margin-right: -42px; transform: rotate(-3deg) scale(0.9); }
+.world-cast .sprite-character:nth-child(2) { z-index: 1; transform: translateY(-8px) scale(1.08); }
+.world-cast .sprite-character:nth-child(3) { margin-left: -42px; transform: rotate(3deg) scale(0.9); }
+
+.world-hero h1 { font-size: clamp(31px, min(9vw, 4.8svh), 41px); }
+.world-hero .primary-button { background: #dce9f8; }
+
+.world-question .progress-fill { background: var(--world-lilac); }
+.world-question .progress-label span:last-child { color: var(--world-lilac); }
+.world-question .option-button:hover,
+.world-question .option-button:focus-visible,
+.world-question .option-button[aria-pressed="true"] { border-color: var(--world-lilac); }
+.world-question .option-button[aria-pressed="true"] { background: #f2edf8; }
+.world-question .option-button[aria-pressed="true"]::before { border-color: var(--world-lilac); background: var(--world-lilac); }
+.world-question .question-hint { background: var(--world-navy-soft); }
+
+.world-result .result-hero {
+  min-height: clamp(500px, 68svh, 570px);
+  border-color: #47433f;
+  box-shadow: 5px 6px 0 #47433f;
+}
+
+.world-result-character {
+  width: clamp(235px, 72vw, 310px);
+  margin-block: -6px;
+}
+
+.world-result-character.sprite-10 { clip-path: inset(0 18% 0 2%); }
+.world-result-character.sprite-14 { clip-path: inset(0 8% 0 2%); }
+
+.world-result .result-name { max-width: 360px; font-size: clamp(25px, 7.4vw, 33px); }
+.world-result .catchphrase { max-width: 350px; font-size: clamp(13px, 3.8vw, 15px); }
+
+.world-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.world-keywords span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: white;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.condition-list { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.condition-list li {
+  padding: 11px 12px;
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--world-soft, #f2edf8);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+.condition-list li::before { content: "✓"; margin-right: 8px; color: var(--world-accent, var(--world-lilac)); font-weight: 900; }
+
+.compatibility-grid { display: grid; gap: 10px; }
+.compatibility-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+}
+.compatibility-card:nth-child(2) { background: #fff4dc; }
+.compatibility-card:nth-child(3) { background: #f1edf6; }
+.compatibility-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 11px; font-weight: 800; }
+.compatibility-card strong { display: block; font-size: 14px; line-height: 1.35; word-break: keep-all; }
+
+.world-disclaimer { padding-inline: 10px; }
+.back-test-link { display: block; padding: 10px; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+
+@media (max-width: 389px) {
+  .world-cast { height: clamp(168px, 28svh, 220px); }
+  .sprite-character { width: clamp(122px, 40vw, 150px); }
+  .world-cast .sprite-character:nth-child(1) { margin-right: -38px; }
+  .world-cast .sprite-character:nth-child(3) { margin-left: -38px; }
+  .world-result .result-hero { min-height: 470px; }
+}
+
+@media (max-height: 700px) {
+  .world-cast { height: min(190px, 28svh); }
+  .world-hero { gap: 13px; }
+  .world-result .result-hero { min-height: 455px; }
+}

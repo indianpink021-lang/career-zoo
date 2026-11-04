@@ -185,6 +185,15 @@ h1, h2, h3 {
 }
 
 .hero .primary-button { flex: 0 0 auto; }
+.other-test-link {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+  text-decoration-color: #c8bdb1;
+  text-underline-offset: 4px;
+}
+.other-test-link:hover, .other-test-link:focus-visible { color: var(--coral); }
 .disclaimer { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; text-align: center; }
 
 .question-screen {

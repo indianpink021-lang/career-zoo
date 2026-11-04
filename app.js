@@ -125,6 +125,7 @@ function renderIntro() {
         <span class="pill">가입 없음</span>
       </div>
       <button class="primary-button" type="button" id="start-button">내 전직 동물 찾기</button>
+      <a class="other-test-link" href="world.html">새 테스트 · 내가 성과 내는 세계관 찾기 →</a>
       <p class="disclaimer">재미를 위한 자기 탐색 콘텐츠예요. 진로를 대신 결정하지 않아요.</p>
     </section>`;
   document.querySelector("#start-button").addEventListener("click", () => {
