@@ -77,6 +77,8 @@ class HarnessTest(unittest.TestCase):
             self.assertIn("visibility: hidden", stylesheet)
             self.assertIn("min-height: 100dvh", stylesheet)
             self.assertIn("@media (min-width: 600px)", stylesheet)
+            self.assertIn("@media (max-height: 700px)", stylesheet)
+            self.assertIn("width: min(100%, 430px)", stylesheet)
 
 
 if __name__ == "__main__":
