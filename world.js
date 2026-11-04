@@ -325,7 +325,7 @@ function renderIntro() {
       </div>
       <button class="primary-button" type="button" id="start-button">내 세계관 입장하기</button>
       <a class="other-test-link" href="index.html">먼저 ‘나의 다음 직업 찾기’ 해보기 →</a>
-      <p class="disclaimer world-disclaimer">재미를 위한 자체 업무환경 테스트예요. 공식 MBTI 검사나 과학적 궁합 진단이 아니에요.</p>
+      <p class="disclaimer world-disclaimer">재미를 위한 자체 업무환경 테스트예요.<br />공식 MBTI 검사나 과학적 궁합 진단이 아니에요.</p>
     </section>`;
   document.querySelector("#start-button").addEventListener("click", () => {
     trackEvent("world_test_start", { question_count: questions.length });
@@ -448,7 +448,7 @@ function renderResult({ trackCompletion = true } = {}) {
       </div></article>
       <div class="result-actions"><button class="primary-button" type="button" id="save-card">결과 이미지 저장</button><button class="text-button restart-button" type="button" id="restart">↻ 다시 해보기</button></div>
       <a class="back-test-link" href="index.html">‘나의 다음 직업 찾기’도 해보기 →</a>
-      <p class="disclaimer world-disclaimer">재미를 위한 자체 업무환경 테스트예요. 공식 MBTI 검사나 과학적 궁합 진단이 아니에요.</p>
+      <p class="disclaimer world-disclaimer">재미를 위한 자체 업무환경 테스트예요.<br />공식 MBTI 검사나 과학적 궁합 진단이 아니에요.</p>
     </section>`;
   document.querySelector("#save-card").addEventListener("click", downloadResultCard);
   document.querySelector("#restart").addEventListener("click", restart);
