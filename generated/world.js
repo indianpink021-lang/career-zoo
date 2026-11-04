@@ -308,8 +308,7 @@ function focusMain() {
 function spriteStyle(index) {
   const column = index % 4;
   const row = Math.floor(index / 4);
-  const x = index === 10 ? 65.8 : (column / 3) * 100;
-  return `--sprite-x:${x}%;--sprite-y:${(row / 3) * 100}%`;
+  return `--sprite-x:${(column / 3) * 100}%;--sprite-y:${(row / 3) * 100}%`;
 }
 
 function renderIntro() {
@@ -496,20 +495,15 @@ function drawSpriteCell(context, image, index, x, y, size) {
   const sourceHeight = image.height / 4;
   const column = index % 4;
   const row = Math.floor(index / 4);
-  const extendLeft = index === 10 ? sourceWidth * 0.04 : 0;
-  const trimRight = index === 10 ? sourceWidth * 0.15 : (index === 14 ? sourceWidth * 0.08 : 0);
-  const trimLeft = index === 14 ? sourceWidth * 0.02 : 0;
-  const visibleWidth = sourceWidth - trimLeft - trimRight;
-  const destinationOffset = index === 10 ? size * 0.05 : size * (trimLeft / sourceWidth);
   context.drawImage(
     image,
-    column * sourceWidth + trimLeft - extendLeft,
+    column * sourceWidth,
     row * sourceHeight,
-    visibleWidth,
+    sourceWidth,
     sourceHeight,
-    x + destinationOffset,
+    x,
     y,
-    size * (visibleWidth / sourceWidth),
+    size,
     size,
   );
 }
