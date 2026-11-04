@@ -47,9 +47,18 @@ class HarnessTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)
             build_webapp(self.spec, output)
-            for relative in ("index.html", "styles.css", "app.js", "test-spec.json"):
+            for relative in (
+                "index.html",
+                "styles.css",
+                "app.js",
+                "world.html",
+                "world.css",
+                "world.js",
+                "test-spec.json",
+            ):
                 self.assertTrue((output / relative).is_file())
-            self.assertEqual(len(list((output / "assets").glob("*.png"))), 6)
+            self.assertEqual(len(list((output / "assets").glob("*.png"))), 7)
+            self.assertTrue((output / "assets" / "world_characters.png").is_file())
             self.assertTrue((output / "assets" / "fonts" / "Hakgyoansim-Dunggeunmiso-TTF-B.ttf").is_file())
             self.assertTrue((output / "assets" / "fonts" / "OFL.txt").is_file())
             html = (output / "index.html").read_text(encoding="utf-8")
@@ -80,6 +89,11 @@ class HarnessTest(unittest.TestCase):
             self.assertIn("@media (min-width: 600px)", stylesheet)
             self.assertIn("@media (max-height: 700px)", stylesheet)
             self.assertIn("width: min(100%, 430px)", stylesheet)
+            world_javascript = (output / "world.js").read_text(encoding="utf-8")
+            self.assertIn('const filename = `${state.code}.png`', world_javascript)
+            self.assertIn("world_test_complete", world_javascript)
+            self.assertIn("공식 MBTI 검사나 과학적 궁합 진단이 아니에요", world_javascript)
+            self.assertNotIn("<h1>${state.code}", world_javascript)
 
 
 if __name__ == "__main__":

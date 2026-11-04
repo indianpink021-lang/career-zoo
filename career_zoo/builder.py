@@ -14,7 +14,15 @@ def build_webapp(spec: dict[str, Any], output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "assets").mkdir(exist_ok=True)
     write_json(output_dir / "test-spec.json", spec)
-    for filename in ("index.html", "styles.css", "app.js", "README.md"):
+    for filename in (
+        "index.html",
+        "styles.css",
+        "app.js",
+        "world.html",
+        "world.css",
+        "world.js",
+        "README.md",
+    ):
         shutil.copy2(TEMPLATE_DIR / filename, output_dir / filename)
     for archetype in spec["archetypes"]:
         source = PROJECT_ROOT / archetype["asset"]
@@ -23,4 +31,7 @@ def build_webapp(spec: dict[str, Any], output_dir: Path) -> None:
     font_source = PROJECT_ROOT / "assets" / "fonts"
     if font_source.exists():
         shutil.copytree(font_source, output_dir / "assets" / "fonts", dirs_exist_ok=True)
+    world_characters = PROJECT_ROOT / "assets" / "characters" / "world_characters.png"
+    if world_characters.exists():
+        shutil.copy2(world_characters, output_dir / "assets" / world_characters.name)
 
