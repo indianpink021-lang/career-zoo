@@ -35,7 +35,7 @@
   flex: 0 0 auto;
   width: clamp(138px, 39vw, 172px);
   aspect-ratio: 1;
-  background-image: url("assets/world_characters.png");
+  background-image: url("assets/world_characters.png?v=20261104-spacing2");
   background-repeat: no-repeat;
   background-position: var(--sprite-x) var(--sprite-y);
   background-size: 400% 400%;

@@ -21,7 +21,7 @@ if (analyticsEnabled) {
 
 const app = document.querySelector("#app");
 const toast = document.querySelector("#toast");
-const spritePath = "assets/world_characters.png";
+const spritePath = "assets/world_characters.png?v=20261104-spacing2";
 
 const questions = [
   {
