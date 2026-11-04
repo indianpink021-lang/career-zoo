@@ -34,7 +34,7 @@
   flex: 0 0 auto;
   width: clamp(138px, 39vw, 172px);
   aspect-ratio: 1;
-  background-image: url("assets/world_characters.png?v=20261104-spacing2");
+  background-image: url("assets/world_characters.png?v=20261104-spacing3");
   background-repeat: no-repeat;
   background-position: var(--sprite-x) var(--sprite-y);
   background-size: 400% 400%;
@@ -53,14 +53,17 @@
 .world-question .question-hint { background: var(--world-navy-soft); }
 
 .world-result .result-hero {
-  min-height: clamp(500px, 68svh, 570px);
+  justify-content: flex-start;
+  min-height: 0;
+  padding-block: clamp(22px, 6vw, 28px) clamp(26px, 7vw, 32px);
   border-color: #47433f;
   box-shadow: 5px 6px 0 #47433f;
 }
 
 .world-result-character {
   width: clamp(235px, 72vw, 310px);
-  margin-block: -6px;
+  margin-block: 0;
+  transform: translateY(clamp(16px, 5vw, 22px));
 }
 
 .world-result .result-name {
@@ -104,7 +107,7 @@
 .compatibility-card {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -112,7 +115,7 @@
 }
 .compatibility-card:nth-child(2) { background: #fff4dc; }
 .compatibility-card:nth-child(3) { background: #f1edf6; }
-.compatibility-character { width: 72px; }
+.compatibility-character { width: clamp(86px, 23vw, 96px); }
 .compatibility-copy { min-width: 0; flex: 1; }
 .compatibility-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 11px; font-weight: 800; }
 .compatibility-card strong { display: block; font-size: 14px; line-height: 1.35; word-break: keep-all; }
@@ -123,11 +126,11 @@
 @media (max-width: 389px) {
   .world-hero-art { height: clamp(168px, 28svh, 220px); }
   .sprite-character { width: clamp(122px, 40vw, 150px); }
-  .world-result .result-hero { min-height: 470px; }
+  .world-result-character { width: clamp(220px, 72vw, 280px); }
+  .compatibility-character { width: clamp(82px, 25vw, 92px); }
 }
 
 @media (max-height: 700px) {
   .world-hero-art { height: min(190px, 28svh); }
   .world-hero { gap: 13px; }
-  .world-result .result-hero { min-height: 455px; }
 }

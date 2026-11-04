@@ -21,7 +21,7 @@ if (analyticsEnabled) {
 
 const app = document.querySelector("#app");
 const toast = document.querySelector("#toast");
-const spritePath = "assets/world_characters.png?v=20261104-spacing2";
+const spritePath = "assets/world_characters.png?v=20261104-spacing3";
 
 const questions = [
   {
@@ -577,7 +577,7 @@ async function downloadResultCard() {
       const x = 104 + index * 294;
       const related = results[code];
       context.fillStyle = index === 1 ? "#fff4dc" : "#ffffff"; roundedRect(context, x, relationY, 272, 230, 28);
-      drawSpriteCell(context, image, related.sprite, x + 96, relationY + 14, 80);
+      drawSpriteCell(context, image, related.sprite, x + 91, relationY + 9, 90);
       context.fillStyle = "#6f6962"; context.font = "800 19px system-ui, sans-serif"; context.fillText(label, x + 136, relationY + 114);
       context.fillStyle = "#292725"; context.font = '700 23px "Hakgyoansim Dunggeunmiso Web", system-ui, sans-serif';
       wrapCenteredText(context, related.name, x + 136, relationY + 153, 230, 29, 3);
