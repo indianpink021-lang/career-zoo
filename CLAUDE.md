@@ -1,6 +1,7 @@
 # 프로젝트 작업 지침
 
 - 디자인과 콘텐츠 판단 전에 루트의 `design.md`를 읽는다.
+- 재사용 가능한 디자인 결정이 생기거나 기존 기준이 바뀌면 `design.md`도 함께 갱신한다.
 - 원본 소스는 `career_zoo/templates/`, `assets/`, `runs/`에 있다.
 - `generated/`는 빌드 결과다. 직접 고치지 말고 원본을 수정한 뒤 다시 생성한다.
 - 빌드는 프로젝트 루트에서 `python3 -m career_zoo demo`로 실행한다.
