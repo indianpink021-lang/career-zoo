@@ -73,6 +73,10 @@ class HarnessTest(unittest.TestCase):
             self.assertIn("KAKAOTALK", javascript)
             self.assertIn("restoreResultFromUrl", javascript)
             self.assertIn("image-save-dialog", (output / "styles.css").read_text(encoding="utf-8"))
+            stylesheet = (output / "styles.css").read_text(encoding="utf-8")
+            self.assertIn("visibility: hidden", stylesheet)
+            self.assertIn("min-height: 100dvh", stylesheet)
+            self.assertIn("@media (min-width: 600px)", stylesheet)
 
 
 if __name__ == "__main__":
