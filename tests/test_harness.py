@@ -57,8 +57,9 @@ class HarnessTest(unittest.TestCase):
                 "test-spec.json",
             ):
                 self.assertTrue((output / relative).is_file())
-            self.assertEqual(len(list((output / "assets").glob("*.png"))), 7)
+            self.assertEqual(len(list((output / "assets").glob("*.png"))), 8)
             self.assertTrue((output / "assets" / "world_characters.png").is_file())
+            self.assertTrue((output / "assets" / "world_intro_group.png").is_file())
             self.assertTrue((output / "assets" / "fonts" / "Hakgyoansim-Dunggeunmiso-TTF-B.ttf").is_file())
             self.assertTrue((output / "assets" / "fonts" / "OFL.txt").is_file())
             html = (output / "index.html").read_text(encoding="utf-8")

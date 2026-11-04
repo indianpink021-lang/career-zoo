@@ -19,13 +19,12 @@
 
 .world-hero .eyebrow, .world-question .question-kicker { color: var(--world-lilac); }
 
-.world-cast {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+.world-hero-art {
+  display: block;
   width: 100%;
   height: clamp(190px, 30svh, 260px);
   margin-block: -4px;
+  object-fit: contain;
 }
 
 .sprite-character {
@@ -40,10 +39,6 @@
   background-position: var(--sprite-x) var(--sprite-y);
   background-size: 400% 400%;
 }
-
-.world-cast .sprite-character:nth-child(1) { margin-right: -42px; transform: rotate(-3deg) scale(0.9); }
-.world-cast .sprite-character:nth-child(2) { z-index: 1; transform: translateY(-8px) scale(1.08); }
-.world-cast .sprite-character:nth-child(3) { margin-left: -42px; transform: rotate(3deg) scale(0.9); }
 
 .world-hero h1 { font-size: clamp(31px, min(9vw, 4.8svh), 41px); }
 .world-hero .primary-button { background: #dce9f8; }
@@ -126,15 +121,13 @@
 .back-test-link { display: block; padding: 10px; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
 
 @media (max-width: 389px) {
-  .world-cast { height: clamp(168px, 28svh, 220px); }
+  .world-hero-art { height: clamp(168px, 28svh, 220px); }
   .sprite-character { width: clamp(122px, 40vw, 150px); }
-  .world-cast .sprite-character:nth-child(1) { margin-right: -38px; }
-  .world-cast .sprite-character:nth-child(3) { margin-left: -38px; }
   .world-result .result-hero { min-height: 470px; }
 }
 
 @media (max-height: 700px) {
-  .world-cast { height: min(190px, 28svh); }
+  .world-hero-art { height: min(190px, 28svh); }
   .world-hero { gap: 13px; }
   .world-result .result-hero { min-height: 455px; }
 }
