@@ -308,7 +308,8 @@ function focusMain() {
 function spriteStyle(index) {
   const column = index % 4;
   const row = Math.floor(index / 4);
-  return `--sprite-x:${(column / 3) * 100}%;--sprite-y:${(row / 3) * 100}%`;
+  const x = index === 10 ? 65.8 : (column / 3) * 100;
+  return `--sprite-x:${x}%;--sprite-y:${(row / 3) * 100}%`;
 }
 
 function renderIntro() {
@@ -422,7 +423,11 @@ function restoreResult() {
 }
 
 function relationCard(label, code) {
-  return `<div class="compatibility-card"><span class="compatibility-label">${label}</span><strong>${escapeHtml(results[code].name)}</strong></div>`;
+  const item = results[code];
+  return `<div class="compatibility-card">
+    <span class="sprite-character compatibility-character sprite-${item.sprite}" style="${spriteStyle(item.sprite)}" role="img" aria-label="${escapeHtml(item.name)} 캐릭터"></span>
+    <div class="compatibility-copy"><span class="compatibility-label">${label}</span><strong>${escapeHtml(item.name)}</strong></div>
+  </div>`;
 }
 
 function renderResult({ trackCompletion = true } = {}) {
@@ -491,16 +496,18 @@ function drawSpriteCell(context, image, index, x, y, size) {
   const sourceHeight = image.height / 4;
   const column = index % 4;
   const row = Math.floor(index / 4);
-  const trimRight = index === 10 ? sourceWidth * 0.18 : (index === 14 ? sourceWidth * 0.08 : 0);
-  const trimLeft = [10, 14].includes(index) ? sourceWidth * 0.02 : 0;
+  const extendLeft = index === 10 ? sourceWidth * 0.04 : 0;
+  const trimRight = index === 10 ? sourceWidth * 0.15 : (index === 14 ? sourceWidth * 0.08 : 0);
+  const trimLeft = index === 14 ? sourceWidth * 0.02 : 0;
   const visibleWidth = sourceWidth - trimLeft - trimRight;
+  const destinationOffset = index === 10 ? size * 0.05 : size * (trimLeft / sourceWidth);
   context.drawImage(
     image,
-    column * sourceWidth + trimLeft,
+    column * sourceWidth + trimLeft - extendLeft,
     row * sourceHeight,
     visibleWidth,
     sourceHeight,
-    x + (size * (trimLeft / sourceWidth)),
+    x + destinationOffset,
     y,
     size * (visibleWidth / sourceWidth),
     size,
@@ -570,18 +577,20 @@ async function downloadResultCard() {
     const taglineY = 700 + titleLines * 72 + 25;
     context.font = "700 27px system-ui, sans-serif";
     wrapCenteredText(context, `“${item.tagline}”`, 540, taglineY, 800, 40, 2);
-    const relationY = 925;
+    const relationY = 900;
     const relationItems = [
-      ["나랑 찰떡인 유형", results[toggleEnergy(state.code)].name],
-      ["나의 소울메이트", results[soulmate[state.code]].name],
-      ["친구로만 지내요 우리", results[friendOnly[state.code]].name],
+      ["나랑 찰떡인 유형", toggleEnergy(state.code)],
+      ["나의 소울메이트", soulmate[state.code]],
+      ["친구로만 지내요 우리", friendOnly[state.code]],
     ];
-    relationItems.forEach(([label, name], index) => {
+    relationItems.forEach(([label, code], index) => {
       const x = 104 + index * 294;
-      context.fillStyle = index === 1 ? "#fff4dc" : "#ffffff"; roundedRect(context, x, relationY, 272, 190, 28);
-      context.fillStyle = "#6f6962"; context.font = "800 19px system-ui, sans-serif"; context.fillText(label, x + 136, relationY + 43);
+      const related = results[code];
+      context.fillStyle = index === 1 ? "#fff4dc" : "#ffffff"; roundedRect(context, x, relationY, 272, 230, 28);
+      drawSpriteCell(context, image, related.sprite, x + 96, relationY + 14, 80);
+      context.fillStyle = "#6f6962"; context.font = "800 19px system-ui, sans-serif"; context.fillText(label, x + 136, relationY + 114);
       context.fillStyle = "#292725"; context.font = '700 23px "Hakgyoansim Dunggeunmiso Web", system-ui, sans-serif';
-      wrapCenteredText(context, name, x + 136, relationY + 88, 230, 31, 3);
+      wrapCenteredText(context, related.name, x + 136, relationY + 153, 230, 29, 3);
     });
     context.fillStyle = "#777068"; context.font = "500 20px system-ui, sans-serif";
     context.fillText("재미를 위한 자체 업무환경 테스트예요. 공식 성격 검사가 아니에요.", 540, 1234);
