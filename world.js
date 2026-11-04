@@ -14,7 +14,10 @@ if (analyticsEnabled) {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   document.head.append(script);
   window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID);
+  window.gtag("config", GA_MEASUREMENT_ID, {
+    page_title: document.title,
+    page_path: window.location.pathname,
+  });
 } else {
   window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
 }
@@ -591,4 +594,9 @@ async function downloadResultCard() {
   }
 }
 
-if (!restoreResult()) renderIntro();
+const restoredResult = restoreResult();
+if (!restoredResult) renderIntro();
+trackEvent("world_test_view", {
+  entry_screen: restoredResult ? "result" : "intro",
+  result_key: restoredResult ? state.code : "none",
+});
