@@ -72,7 +72,7 @@
   font-size: clamp(25px, 7.4vw, 33px);
   font-weight: 700;
 }
-.world-result .catchphrase { max-width: 350px; font-size: clamp(13px, 3.8vw, 15px); }
+.world-result .catchphrase { max-width: 350px; margin-bottom: 22px; font-size: clamp(13px, 3.8vw, 15px); }
 
 .world-keywords {
   display: flex;
