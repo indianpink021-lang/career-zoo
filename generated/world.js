@@ -455,7 +455,9 @@ function renderResult({ trackCompletion = true } = {}) {
     <section class="screen result-screen world-result" style="--world-accent:${item.accent};--world-soft:${item.soft};--result-accent:${item.accent};--result-soft:${item.soft}" aria-labelledby="result-title">
       <header class="result-hero">
         <p class="eyebrow">당신이 성과 내는 세계관은</p>
-        <span class="sprite-character world-result-character sprite-${item.sprite}" style="${spriteStyle(item.sprite)}" role="img" aria-label="${escapeHtml(item.name)} 캐릭터"></span>
+        <span class="world-result-character-frame sprite-${item.sprite}">
+          <span class="sprite-character world-result-character" style="${spriteStyle(item.sprite)}" role="img" aria-label="${escapeHtml(item.name)} 캐릭터"></span>
+        </span>
         <h1 class="result-name" id="result-title" tabindex="-1">${escapeHtml(item.name)}</h1>
         <p class="catchphrase">“${escapeHtml(item.tagline)}”</p>
         <div class="world-keywords">${item.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join("")}</div>

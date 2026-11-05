@@ -60,10 +60,28 @@
   box-shadow: 5px 6px 0 #47433f;
 }
 
-.world-result-character {
+.world-result-character-frame {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
   width: clamp(235px, 72vw, 310px);
-  margin-block: 0;
-  transform: translateY(clamp(16px, 5vw, 22px));
+  aspect-ratio: 1 / 0.67;
+  overflow: hidden;
+}
+
+.world-result-character-frame:is(.sprite-4, .sprite-5, .sprite-6, .sprite-7, .sprite-8, .sprite-9, .sprite-10, .sprite-11) {
+  aspect-ratio: 1 / 0.61;
+}
+
+.world-result-character-frame:is(.sprite-12, .sprite-13, .sprite-14, .sprite-15) {
+  aspect-ratio: 1 / 0.58;
+}
+
+.world-result-character {
+  position: absolute;
+  top: -14%;
+  left: 0;
+  width: 100%;
 }
 
 .world-result .result-name {
@@ -126,7 +144,7 @@
 @media (max-width: 389px) {
   .world-hero-art { height: clamp(168px, 28svh, 220px); }
   .sprite-character { width: clamp(122px, 40vw, 150px); }
-  .world-result-character { width: clamp(220px, 72vw, 280px); }
+  .world-result-character-frame { width: clamp(220px, 72vw, 280px); }
   .compatibility-character { width: clamp(82px, 25vw, 92px); }
 }
 
