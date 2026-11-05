@@ -272,6 +272,25 @@ const results = {
   },
 };
 
+const resultTitleLines = {
+  INTJ: ["탑 꼭대기에서 왕국을", "설계하는 마법사"],
+  INTP: ["시계탑의 수수께끼를", "푸는 연구가"],
+  ENTJ: ["잠든 왕국을 깨우는", "원정대장"],
+  ENTP: ["램프의 세 가지 소원을", "흥정하는 꾀쟁이"],
+  INFJ: ["저주받은 성의 마음을", "읽는 예언가"],
+  INFP: ["별빛을 모아 이야기를", "쓰는 몽상가"],
+  ENFJ: ["길 잃은 일행을 이끄는", "숲속 안내자"],
+  ENFP: ["토끼굴에 먼저 뛰어드는", "탐험가"],
+  ISTJ: ["벽돌집을 끝까지 완성한", "셋째 돼지"],
+  ISFJ: ["일곱 친구의 아침을 챙기는", "숲속 살림꾼"],
+  ESTJ: ["자정 전에 호박마차를", "출발시키는 총감독"],
+  ESFJ: ["동물 친구들과 잔치를 여는", "숲속 주인공"],
+  ISTP: ["나무인형을 뚝딱 고치는", "오두막 장인"],
+  ISFP: ["파도 위에서 자기 노래를", "찾는 인어"],
+  ESTP: ["장화를 신고 판을 뒤집는", "모험가"],
+  ESFP: ["유리구두 무도회를 접수한", "파티 주인공"],
+};
+
 const soulmate = {
   ISTJ: "ESTP", ESTP: "ISTJ", ISFJ: "ESFP", ESFP: "ISFJ",
   INFJ: "ENFP", ENFP: "INFJ", INTJ: "ENTP", ENTP: "INTJ",
@@ -477,16 +496,55 @@ function roundedRect(context, x, y, width, height, radius) {
 }
 
 function wrapCenteredText(context, text, x, y, maxWidth, lineHeight, maxLines = 3) {
-  const characters = [...text];
-  const lines = []; let line = "";
-  characters.forEach((character) => {
-    const candidate = line + character;
-    if (context.measureText(candidate).width > maxWidth && line) { lines.push(line); line = character; }
-    else line = candidate;
+  const words = text.trim().split(/\s+/);
+  const widthOf = (value) => context.measureText(value).width;
+  let minimumLines = 1;
+  let greedyLine = "";
+
+  words.forEach((word) => {
+    const candidate = greedyLine ? `${greedyLine} ${word}` : word;
+    if (greedyLine && widthOf(candidate) > maxWidth) {
+      minimumLines += 1;
+      greedyLine = word;
+    } else {
+      greedyLine = candidate;
+    }
   });
-  if (line) lines.push(line);
-  lines.slice(0, maxLines).forEach((value, index) => context.fillText(value, x, y + index * lineHeight));
-  return Math.min(lines.length, maxLines);
+
+  const targetLines = Math.min(minimumLines, maxLines);
+  const memo = new Map();
+  const findBalancedLines = (start, remaining) => {
+    const key = `${start}:${remaining}`;
+    if (memo.has(key)) return memo.get(key);
+    if (remaining === 1) {
+      const line = words.slice(start).join(" ");
+      const result = line && widthOf(line) <= maxWidth
+        ? { lines: [line], score: (maxWidth - widthOf(line)) ** 2 }
+        : null;
+      memo.set(key, result);
+      return result;
+    }
+
+    let best = null;
+    const lastEnd = words.length - remaining + 1;
+    for (let end = start + 1; end <= lastEnd; end += 1) {
+      const line = words.slice(start, end).join(" ");
+      const lineWidth = widthOf(line);
+      if (lineWidth > maxWidth) break;
+      const rest = findBalancedLines(end, remaining - 1);
+      if (!rest) continue;
+      const singleWordPenalty = end - start === 1 ? maxWidth ** 2 * 0.08 : 0;
+      const score = (maxWidth - lineWidth) ** 2 + singleWordPenalty + rest.score;
+      if (!best || score < best.score) best = { lines: [line, ...rest.lines], score };
+    }
+    memo.set(key, best);
+    return best;
+  };
+
+  const balanced = findBalancedLines(0, targetLines);
+  const lines = balanced?.lines || [text];
+  lines.forEach((value, index) => context.fillText(value, x, y + index * lineHeight));
+  return lines.length;
 }
 
 function drawSpriteCell(context, image, index, x, y, size) {
@@ -565,9 +623,14 @@ async function downloadResultCard() {
     context.fillText("내가 성과 내는 세계관", 540, 128);
     drawSpriteCell(context, image, item.sprite, 280, 155, 520);
     context.fillStyle = "#292725";
-    context.font = '700 60px "Hakgyoansim Dunggeunmiso Web", system-ui, sans-serif';
-    const titleLines = wrapCenteredText(context, item.name, 540, 700, 850, 72, 2);
-    const taglineY = 700 + titleLines * 72 + 25;
+    const titleLineValues = resultTitleLines[state.code];
+    let titleFontSize = 60;
+    do {
+      context.font = `700 ${titleFontSize}px "Hakgyoansim Dunggeunmiso Web", system-ui, sans-serif`;
+      titleFontSize -= 2;
+    } while (titleFontSize >= 50 && titleLineValues.some((line) => context.measureText(line).width > 850));
+    titleLineValues.forEach((line, index) => context.fillText(line, 540, 700 + index * 72));
+    const taglineY = 700 + titleLineValues.length * 72 + 25;
     context.font = "700 27px system-ui, sans-serif";
     wrapCenteredText(context, `“${item.tagline}”`, 540, taglineY, 800, 40, 2);
     const relationY = 900;
