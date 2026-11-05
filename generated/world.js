@@ -633,7 +633,7 @@ async function downloadResultCard() {
     const taglineY = 700 + titleLineValues.length * 72 + 25;
     context.font = "700 27px system-ui, sans-serif";
     wrapCenteredText(context, `“${item.tagline}”`, 540, taglineY, 800, 40, 2);
-    const relationY = 900;
+    const relationY = 908;
     const relationItems = [
       ["나랑 찰떡인 유형", toggleEnergy(state.code)],
       ["나의 소울메이트", soulmate[state.code]],
