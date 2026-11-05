@@ -54,6 +54,9 @@ class HarnessTest(unittest.TestCase):
                 "world.html",
                 "world.css",
                 "world.js",
+                "nemesis.html",
+                "nemesis.css",
+                "nemesis.js",
                 "test-spec.json",
             ):
                 self.assertTrue((output / relative).is_file())
@@ -95,6 +98,11 @@ class HarnessTest(unittest.TestCase):
             self.assertIn("world_test_complete", world_javascript)
             self.assertIn("공식 MBTI 검사나 과학적 궁합 진단이 아니에요", world_javascript)
             self.assertNotIn("<h1>${state.code}", world_javascript)
+            nemesis_javascript = (output / "nemesis.js").read_text(encoding="utf-8")
+            self.assertIn("nemesis_test_complete", nemesis_javascript)
+            self.assertIn("내 멘탈을 흔드는 빌런", nemesis_javascript)
+            self.assertIn("내가 빌런이 되는 상대", nemesis_javascript)
+            self.assertIn("사람의 가치나 실제 관계를 단정하지 않아요", nemesis_javascript)
 
 
 if __name__ == "__main__":

@@ -21,6 +21,9 @@ def build_webapp(spec: dict[str, Any], output_dir: Path) -> None:
         "world.html",
         "world.css",
         "world.js",
+        "nemesis.html",
+        "nemesis.css",
+        "nemesis.js",
         "README.md",
     ):
         shutil.copy2(TEMPLATE_DIR / filename, output_dir / filename)

@@ -1,0 +1,149 @@
+@import url("styles.css?v=20261104d");
+
+:root {
+  --villain-plum: #75506f;
+  --villain-ink: #332a39;
+  --villain-lime: #dceb8b;
+  --villain-pink: #f4c5cf;
+  --villain-soft: #f4edf5;
+}
+
+.nemesis-shell { --coral: var(--villain-plum); --coral-soft: var(--villain-soft); }
+
+.nemesis-hero {
+  gap: clamp(18px, 3svh, 28px);
+  color: var(--villain-ink);
+  background:
+    radial-gradient(circle at 18% 17%, rgba(220, 235, 139, .45), transparent 26%),
+    radial-gradient(circle at 85% 28%, rgba(244, 197, 207, .55), transparent 30%),
+    #fffaf0;
+}
+
+.nemesis-hero .eyebrow,
+.nemesis-question .question-kicker { color: var(--villain-plum); }
+
+.villain-cast {
+  position: relative;
+  width: min(100%, 350px);
+  height: clamp(190px, 31svh, 245px);
+  border: 1.5px solid var(--villain-ink);
+  border-radius: 34px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #efe7f1, #fff2d6);
+  box-shadow: 5px 6px 0 var(--villain-ink);
+}
+
+.villain-cast::before {
+  content: "관계 경보 발령";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) rotate(-2deg);
+  padding: 7px 13px;
+  color: var(--villain-ink);
+  background: var(--villain-lime);
+  border: 1px solid var(--villain-ink);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.nemesis-sprite {
+  --sprite-x: 0%;
+  --sprite-y: 0%;
+  display: block;
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  background-image: url("assets/world_characters.png?v=20261104-retina1");
+  background-repeat: no-repeat;
+  background-position: var(--sprite-x) var(--sprite-y);
+  background-size: 400% 400%;
+}
+
+.villain-cast .nemesis-sprite { position: absolute; width: clamp(145px, 44vw, 180px); }
+.villain-cast .cast-a { left: -9px; bottom: -18px; transform: rotate(-6deg); }
+.villain-cast .cast-b { left: 50%; bottom: 5px; transform: translateX(-50%) scale(1.05); z-index: 1; }
+.villain-cast .cast-c { right: -12px; bottom: -20px; transform: rotate(7deg); }
+
+.nemesis-hero h1 { font-size: clamp(34px, min(10vw, 5svh), 42px); }
+.nemesis-hero .primary-button { background: var(--villain-lime); }
+.nemesis-hero .pill { color: var(--villain-plum); background: #f1e7f2; }
+
+.nemesis-question .progress-fill { background: var(--villain-plum); }
+.nemesis-question .progress-label span:last-child { color: var(--villain-plum); }
+.nemesis-question .option-button:hover,
+.nemesis-question .option-button:focus-visible,
+.nemesis-question .option-button[aria-pressed="true"] { border-color: var(--villain-plum); }
+.nemesis-question .option-button[aria-pressed="true"] { background: var(--villain-soft); }
+.nemesis-question .option-button[aria-pressed="true"]::before { border-color: var(--villain-plum); background: var(--villain-plum); }
+.nemesis-question .question-hint { background: #f3edf5; }
+
+.nemesis-result .result-hero {
+  min-height: 0;
+  padding: 24px 18px 28px;
+  border-color: var(--villain-ink);
+  background: linear-gradient(165deg, var(--result-soft, #f4edf5), #fff9eb);
+  box-shadow: 5px 6px 0 var(--villain-ink);
+}
+
+.nemesis-result .result-hero .eyebrow { color: var(--villain-plum); }
+.nemesis-result-character-frame {
+  position: relative;
+  width: clamp(235px, 72vw, 300px);
+  aspect-ratio: 1 / .74;
+  overflow: hidden;
+}
+.nemesis-result-character { position: absolute; top: -8%; left: 0; width: 100%; }
+.nemesis-result .result-name {
+  max-width: 370px;
+  font-family: var(--display);
+  font-size: clamp(26px, 7.6vw, 34px);
+  line-height: 1.16;
+}
+.nemesis-result .catchphrase { margin-bottom: 8px; }
+
+.villain-section { min-height: 0; }
+.villain-pair { display: grid; gap: 12px; margin-top: 12px; }
+.villain-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+}
+.villain-card:nth-child(2) { background: #fff1d8; }
+.villain-character {
+  width: 96px;
+  background-position: var(--sprite-x) calc(var(--sprite-y) + 6px);
+}
+.villain-card small { display: block; margin-bottom: 4px; color: var(--villain-plum); font-size: 11px; font-weight: 900; }
+.villain-card strong { display: block; font-size: 15px; line-height: 1.35; word-break: keep-all; }
+.villain-card p { margin-top: 7px; font-size: 12px; line-height: 1.45; }
+
+.collision-card {
+  min-height: 0;
+  background: var(--villain-ink);
+  color: #fff;
+}
+.collision-card h3 { color: var(--villain-lime); }
+.collision-card p { color: #f8eff7; font-size: 14px; font-weight: 700; }
+.nemesis-actions { display: grid; gap: 12px; }
+.nemesis-actions .primary-button { background: var(--villain-lime); }
+.nemesis-disclaimer { padding-inline: 8px; }
+.series-link { display: block; padding: 9px; color: var(--muted); font-size: 12px; font-weight: 750; text-align: center; }
+
+@media (max-width: 340px) {
+  .villain-card { grid-template-columns: 84px minmax(0, 1fr); padding: 11px; }
+  .villain-character { width: 84px; }
+  .nemesis-result-character-frame { width: 220px; }
+}
+
+@media (max-height: 700px) {
+  .villain-cast { height: min(184px, 29svh); }
+  .nemesis-hero { gap: 14px; }
+}
