@@ -138,11 +138,7 @@ function renderIntro() {
   app.innerHTML = `
     <section class="screen hero nemesis-hero" aria-labelledby="intro-title">
       <p class="eyebrow">RELATIONSHIP VILLAIN TEST</p>
-      <div class="villain-cast" aria-hidden="true">
-        ${characterImage("INFP", "cast-a")}
-        ${characterImage("ENTJ", "cast-b")}
-        ${characterImage("ESTJ", "cast-c")}
-      </div>
+      <img class="villain-intro-art" src="assets/nemesis_intro_group.png?v=20261106-intro1" alt="문 뒤에 숨는 몽상가와 원정대장, 맑은 눈의 안내자가 모인 빌런들" draggable="false" />
       <div class="hero-heading">
         <h1 id="intro-title"><span>내 인간관계의</span><span>빌런 찾기</span></h1>
         <p class="hero-copy">나를 유독 지치게 하는 사람은 누구일까?<br />그리고 나는 누구 앞에서 빌런이 될까?</p>

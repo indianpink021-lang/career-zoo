@@ -22,32 +22,12 @@
 .nemesis-hero .eyebrow,
 .nemesis-question .question-kicker { color: var(--villain-plum); }
 
-.villain-cast {
-  position: relative;
-  width: min(100%, 350px);
-  height: clamp(190px, 31svh, 245px);
-  border: 1.5px solid var(--villain-ink);
-  border-radius: 34px;
-  overflow: hidden;
-  background: linear-gradient(145deg, #efe7f1, #fff2d6);
-  box-shadow: 5px 6px 0 var(--villain-ink);
-}
-
-.villain-cast::before {
-  content: "관계 경보 발령";
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  z-index: 2;
-  transform: translateX(-50%) rotate(-2deg);
-  padding: 7px 13px;
-  color: var(--villain-ink);
-  background: var(--villain-lime);
-  border: 1px solid var(--villain-ink);
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 900;
-  white-space: nowrap;
+.villain-intro-art {
+  display: block;
+  width: min(100%, 370px);
+  height: auto;
+  max-height: 32svh;
+  object-fit: contain;
 }
 
 .nemesis-character-image {
@@ -56,11 +36,6 @@
   object-fit: contain;
   user-select: none;
 }
-
-.villain-cast .nemesis-character-image { position: absolute; width: clamp(145px, 44vw, 180px); }
-.villain-cast .cast-a { left: -9px; bottom: -18px; transform: rotate(-6deg); }
-.villain-cast .cast-b { left: 50%; bottom: 5px; transform: translateX(-50%) scale(1.05); z-index: 1; }
-.villain-cast .cast-c { right: -12px; bottom: -20px; transform: rotate(7deg); }
 
 .nemesis-hero h1,
 .nemesis-question .question-card h2,
@@ -148,6 +123,6 @@
 }
 
 @media (max-height: 700px) {
-  .villain-cast { height: min(184px, 29svh); }
+  .villain-intro-art { max-height: 29svh; }
   .nemesis-hero { gap: 14px; }
 }
