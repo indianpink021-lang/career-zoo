@@ -253,7 +253,10 @@ function renderResult({ trackCompletion = true } = {}) {
 
 async function shareResult() {
   const profile = profiles[state.code];
-  const data = { title: "내 인간관계의 빌런 찾기", text: `내 빌런 모드는 ‘${profile.title}’`, url: window.location.href };
+  const shareUrl = new URL(window.location.href);
+  shareUrl.search = "";
+  shareUrl.hash = `villain=${state.code}`;
+  const data = { title: "내 인간관계의 빌런 찾기", text: `내 빌런 모드는 ‘${profile.title}’`, url: shareUrl.href };
   trackEvent("nemesis_result_share", { result_key: state.code });
   try {
     if (navigator.share) { await navigator.share(data); return; }
