@@ -223,7 +223,7 @@ function restoreResult() {
 
 function villainCard(label, code, reason) {
   const profile = profiles[code];
-  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(profile.title)}</strong><p>${escapeHtml(reason)}</p></div></div>`;
+  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(profile.title)}</strong><span class="nemesis-mbti" aria-label="MBTI 유형 ${code}">${code}</span><p>${escapeHtml(reason)}</p></div></div>`;
 }
 
 function renderResult({ trackCompletion = true } = {}) {
@@ -237,6 +237,7 @@ function renderResult({ trackCompletion = true } = {}) {
         <span class="nemesis-result-character-frame">${characterImage(state.code, "nemesis-result-character")}</span>
         <h1 class="result-name" id="result-title" tabindex="-1">${escapeHtml(profile.title)}</h1>
         <p class="catchphrase">“${escapeHtml(profile.tagline)}”</p>
+        <span class="nemesis-mbti" aria-label="내 MBTI 유형 ${state.code}">${state.code}</span>
       </header>
       <article class="result-section villain-section"><h3>내가 빌런이 되는 순간</h3><p>${escapeHtml(profile.mode)}</p></article>
       <article class="result-section villain-section"><h3>엇갈린 빌런 관계도</h3><div class="villain-pair">${villainCard("내 멘탈을 흔드는 빌런", profile.drains, profile.drainsReason)}${villainCard("내가 빌런이 되는 상대", profile.drainedBy, profile.drainedReason)}</div></article>

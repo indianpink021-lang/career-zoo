@@ -103,6 +103,22 @@
 .villain-card small { display: block; margin-bottom: 4px; color: var(--villain-plum); font-size: 11px; font-weight: 900; }
 .villain-card strong { display: block; font-size: 15px; line-height: 1.35; word-break: keep-all; }
 .villain-card p { margin-top: 7px; font-size: 12px; line-height: 1.45; }
+.nemesis-mbti {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border: 1px solid #d8cdd9;
+  border-radius: 999px;
+  background: #fffaf5;
+  color: #75506f;
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .04em;
+}
+.villain-card .nemesis-mbti { margin-top: 6px; }
 
 .collision-card {
   min-height: 0;
