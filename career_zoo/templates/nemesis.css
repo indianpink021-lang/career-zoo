@@ -102,6 +102,7 @@
 }
 .villain-card small { display: block; margin-bottom: 4px; color: var(--villain-plum); font-size: 11px; font-weight: 900; }
 .villain-card strong { display: block; font-size: 15px; line-height: 1.35; word-break: keep-all; }
+.villain-role { white-space: nowrap; }
 .villain-card p { margin-top: 7px; font-size: 12px; line-height: 1.45; }
 .nemesis-mbti {
   display: inline-flex;

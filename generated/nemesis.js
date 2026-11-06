@@ -223,7 +223,10 @@ function restoreResult() {
 
 function villainCard(label, code, reason) {
   const profile = profiles[code];
-  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(profile.title)}</strong><span class="nemesis-mbti" aria-label="MBTI 유형 ${code}">${code}</span><p>${escapeHtml(reason)}</p></div></div>`;
+  const title = code === "ENFP"
+    ? `${escapeHtml(profile.title.slice(0, -" 토끼굴 탐험가".length))}<br /><span class="villain-role">토끼굴 탐험가</span>`
+    : escapeHtml(profile.title);
+  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${title}</strong><span class="nemesis-mbti" aria-label="MBTI 유형 ${code}">${code}</span><p>${escapeHtml(reason)}</p></div></div>`;
 }
 
 function renderResult({ trackCompletion = true } = {}) {
