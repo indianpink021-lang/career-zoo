@@ -130,7 +130,7 @@ function focusMain() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function characterImage(code, className, label = types[code].name) {
+function characterImage(code, className, label = profiles[code].title) {
   return `<img class="nemesis-character-image ${className}" src="assets/nemesis/${code}.png?v=20261106-villains1" alt="${escapeHtml(label)} 캐릭터" draggable="false" />`;
 }
 
@@ -222,8 +222,8 @@ function restoreResult() {
 }
 
 function villainCard(label, code, reason) {
-  const item = types[code];
-  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(item.name)}</strong><p>${escapeHtml(reason)}</p></div></div>`;
+  const profile = profiles[code];
+  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(profile.title)}</strong><p>${escapeHtml(reason)}</p></div></div>`;
 }
 
 function renderResult({ trackCompletion = true } = {}) {
