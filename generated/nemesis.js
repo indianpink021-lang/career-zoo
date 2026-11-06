@@ -93,20 +93,20 @@ const types = {
 };
 
 const profiles = {
-  INTJ: { title: "혼자 결론 내리고 통보하는 탑 위의 설계자", tagline: "이미 세 수 앞까지 봤는데, 왜 처음부터 설명해야 하죠?", mode: "속으로 오래 분석한 뒤 결론만 꺼내 상대를 회의에서 뒤늦게 초대해요.", drains: "ESFP", drainsReason: "즉흥적인 감정과 현장 분위기로 계획이 계속 바뀌면 통제력을 잃은 기분이 들어요.", drainedBy: "ENFP", drainedReason: "가능성을 꺼내는 족족 현실성부터 검증해 ENFP의 신나는 출발을 얼어붙게 만들 수 있어요.", collision: "“일단 해보자!”와 “왜 해야 하죠?”가 같은 방에 들어왔습니다." },
+  INTJ: { title: "혼자 결론 내리고 통보하는 탑 위의 설계자", tagline: "이미 세 수 앞까지 봤는데, 왜 처음부터 설명해야 하죠?", mode: "함께 헤매는 시간을 줄이려 혼자 충분히 검토한 결론부터 꺼내요. 설명과 의논이 빠지면 상대는 함께 정할 일을 통보받았다고 느껴요.", drains: "ESFP", drainsReason: "즉흥적인 감정과 현장 분위기로 계획이 계속 바뀌면 통제력을 잃은 기분이 들어요.", drainedBy: "ENFP", drainedReason: "가능성을 꺼내는 족족 현실성부터 검증해 ENFP의 신나는 출발을 얼어붙게 만들 수 있어요.", collision: "“일단 해보자!”와 “왜 해야 하죠?”가 같은 방에 들어왔습니다." },
   INTP: { title: "모든 대화를 반박 가능한 가설로 만드는 연구가", tagline: "그 말도 맞을 수는 있는데, 정확히는 아니에요.", mode: "감정보다 논리의 빈틈이 먼저 보여 대화가 끝나기 전에 토론을 다시 시작해요.", drains: "ESFJ", drainsReason: "모두의 기분과 참여를 계속 확인하는 분위기가 생각할 틈을 빼앗는 것처럼 느껴져요.", drainedBy: "ESTJ", drainedReason: "결정을 앞두고 예외와 가능성을 계속 추가해 빠른 결론을 원하는 ESTJ를 지치게 해요.", collision: "한쪽은 답을 기다리고, 다른 쪽은 질문을 하나 더 만들고 있습니다." },
-  ENTJ: { title: "사람까지 일정표에 넣는 돌격 원정대장", tagline: "속상한 건 알겠고요. 그래서 다음 행동은 뭔가요?", mode: "관계를 빠르게 개선하려다 상대의 속도와 감정까지 목표처럼 관리해요.", drains: "INTP", drainsReason: "결론보다 분석을 연장하는 태도를 책임 회피처럼 느끼기 쉬워요.", drainedBy: "INFP", drainedReason: "직설적인 압박과 빠른 결론이 INFP에게는 의견이 아니라 관계 전체의 위협처럼 남을 수 있어요.", collision: "ENTJ는 문제를 끝냈고, INFP는 아직 그 말에서 빠져나오지 못했습니다." },
+  ENTJ: { title: "사람까지 일정표에 넣는 돌격 원정대장", tagline: "속상한 건 알겠고요. 그래서 다음 행동은 뭔가요?", mode: "관계를 빠르게 개선하려다 상대의 속도와 감정까지 목표처럼 관리해요.", drains: "ISFP", drainsReason: "기준을 설명하기보다 조용히 거리를 두고 자기 방식대로 움직이면 협조하지 않는 것처럼 느끼기 쉬워요.", drainedBy: "INFP", drainedReason: "직설적인 압박과 빠른 결론이 INFP에게는 의견이 아니라 관계 전체의 위협처럼 남을 수 있어요.", collision: "ENTJ는 답과 행동을 재촉하고, ISFP는 자기 마음까지 승인받는 기분이 듭니다." },
   ENTP: { title: "끝난 얘기도 다시 여는 소원 협상가", tagline: "싸우자는 건 아니고, 반대편도 재밌잖아요?", mode: "재미있는 논점을 발견하면 상대가 이미 지쳤다는 신호도 토론의 일부로 받아들여요.", drains: "ISFJ", drainsReason: "익숙한 방식과 관계의 안정을 우선하면 가능성을 막는 벽처럼 느껴져요.", drainedBy: "INFJ", drainedReason: "민감한 가치와 속마음까지 논쟁거리로 바꾸면 INFJ가 안전하지 않다고 느낄 수 있어요.", collision: "ENTP는 아이디어를 던졌고, INFJ는 마음이 던져졌다고 느낍니다." },
-  INFJ: { title: "말하지 않은 속뜻까지 판결하는 예언가", tagline: "괜찮다고 했지만, 정말 괜찮은 건 아니잖아요.", mode: "상대의 말 뒤에 숨은 의미를 오래 읽다가 혼자 관계의 결론까지 내려요.", drains: "ESTP", drainsReason: "생각보다 행동이 앞서고 감정을 가볍게 넘기면 관계가 거칠게 소모되는 느낌을 받아요.", drainedBy: "ENTP", drainedReason: "평범한 말에서도 의미와 의도를 찾아내 ENTP에게 끝없는 심층 면담처럼 느껴질 수 있어요.", collision: "한쪽은 그냥 한 말이고, 다른 쪽은 그 말의 3막까지 해석했습니다." },
-  INFP: { title: "상처받으면 이야기 밖으로 사라지는 몽상가", tagline: "괜찮아요. 정말로요. 이제 조금 멀리 있을게요.", mode: "갈등에서 바로 설명하기보다 마음속 서사를 완성한 뒤 조용히 거리를 둬요.", drains: "ENTJ", drainsReason: "정답과 실행을 앞세운 압박이 감정을 무시당했다는 상처로 오래 남기 쉬워요.", drainedBy: "ESTJ", drainedReason: "속마음을 말하지 않은 채 멀어지면 ESTJ는 해결 기준을 찾지 못해 답답해져요.", collision: "ENTJ는 왜 대답이 없는지 모르고, INFP는 이미 너무 많은 대답을 들었습니다." },
-  ENFJ: { title: "모두의 마음을 대신 정리하는 숲속 안내자", tagline: "네 마음은 아마 이런 거지? 내가 설명해볼게.", mode: "좋은 의도로 관계를 이끌다가 상대가 스스로 느끼고 선택할 공간까지 채워버려요.", drains: "ISTP", drainsReason: "감정 대화를 짧게 끝내고 혼자 해결하려는 태도에서 벽을 느껴요.", drainedBy: "INTP", drainedReason: "감정과 관계를 계속 확인하면 INTP는 생각까지 관리받는 기분이 들 수 있어요.", collision: "ENFJ는 연결하려 하고, INTP는 와이파이를 끄고 싶어집니다." },
+  INFJ: { title: "말하지 않은 속뜻까지 판결하는 예언가", tagline: "괜찮다고 했지만, 정말 괜찮은 건 아니잖아요.", mode: "관계를 깊이 이해하려다 내 해석을 상대의 진짜 속마음으로 확신해요. 상대가 아니라고 설명해도 숨기는 이유부터 찾으면, 이해받기보다 판결받는 기분을 줄 수 있어요.", drains: "ESTP", drainsReason: "생각보다 행동이 앞서고 감정을 가볍게 넘기면 관계가 거칠게 소모되는 느낌을 받아요.", drainedBy: "ENTP", drainedReason: "평범한 말에서도 의미와 의도를 찾아내 ENTP에게 끝없는 심층 면담처럼 느껴질 수 있어요.", collision: "한쪽은 그냥 한 말이고, 다른 쪽은 그 말의 3막까지 해석했습니다." },
+  INFP: { title: "상처받으면 이야기 밖으로 사라지는 몽상가", tagline: "괜찮아요. 정말로요. 이제 조금 멀리 있을게요.", mode: "소중한 마음을 더 다치게 하고 싶지 않아 혼자 정리할 시간을 가져요. 그런데 무엇이 아팠는지, 언제 돌아올지 말하지 않으면 상대는 해명할 기회도 없이 관계가 닫혔다고 느껴요.", drains: "ENTJ", drainsReason: "정답과 실행을 앞세운 압박이 감정을 무시당했다는 상처로 오래 남기 쉬워요.", drainedBy: "ESTJ", drainedReason: "속마음을 말하지 않은 채 멀어지면 ESTJ는 해결 기준을 찾지 못해 답답해져요.", collision: "ENTJ는 왜 대답이 없는지 모르고, INFP는 이미 너무 많은 대답을 들었습니다." },
+  ENFJ: { title: "너를 위해서라며 끝까지 설득하는 숲속 안내자", tagline: "강요는 아니야. 네가 잘됐으면 해서 한 번만 더 말할게.", mode: "내가 옳고 이게 상대를 위한 길이라고 확신할 때, 거절도 아직 설득이 부족하다는 뜻으로 받아들여요. 도와주고 싶은 마음이 커질수록 상대가 다른 길을 고를 여지는 줄어들어요.", drains: "ISTP", drainsReason: "함께 풀어보려는 제안을 짧게 끊고 혼자 처리하면, 내 진심을 밀어내는 것처럼 느껴 설득을 더 이어가고 싶어져요.", drainedBy: "INTP", drainedReason: "INTP가 스스로 따져보고 다른 결론을 내렸는데도 좋은 뜻이라며 설득을 이어가면, 동의할 때까지 대화가 끝나지 않는 기분을 줄 수 있어요.", collision: "ENFJ는 좋은 길을 알려줬다고 생각하고, INTP는 다른 길로 갈 자유를 찾습니다." },
   ENFP: { title: "새 길을 열고 뒷정리는 잊는 토끼굴 탐험가", tagline: "계획은 바뀌었지만 더 재밌어졌잖아!", mode: "새로운 가능성에 들뜨면 이미 합의한 일정과 상대의 에너지 잔량을 잊어요.", drains: "ISTJ", drainsReason: "정해진 방식과 계획을 지키라는 요구가 관계의 숨통을 막는 것처럼 느껴져요.", drainedBy: "ISFJ", drainedReason: "계획 변경과 감정의 파도가 반복되면 ISFJ가 뒤처리를 혼자 맡은 기분이 들어요.", collision: "ENFP는 모험을 시작했고, ISFJ는 모두의 충전기를 챙기고 있습니다." },
   ISTJ: { title: "규정집으로 성문을 잠그는 셋째 돼지", tagline: "지난번에도 이렇게 하기로 했습니다.", mode: "약속과 사실을 지키려다 상황이 바뀌어도 예외를 허용하지 않는 사람처럼 보여요.", drains: "ENFP", drainsReason: "그때그때 달라지는 약속과 즉흥적인 선택이 신뢰를 흔드는 일처럼 느껴져요.", drainedBy: "ENTP", drainedReason: "이미 합의한 기준을 반복해서 확인하면 ENTP는 가능성이 봉쇄됐다고 느껴요.", collision: "ISTJ는 약속을 기억하고, ENTP는 그 약속을 업데이트하려 합니다." },
-  ISFJ: { title: "괜찮다 해놓고 조용히 장부에 적는 살림꾼", tagline: "아니에요, 괜찮아요. 다만 기억은 할게요.", mode: "상대를 배려해 불편함을 참다가 마음속 장부가 가득 찬 뒤 갑자기 문을 닫아요.", drains: "ENTP", drainsReason: "예측하기 어려운 논쟁과 변화가 관계의 안전선을 계속 흔들어요.", drainedBy: "ESTP", drainedReason: "직접 말하지 않은 기대가 쌓이면 ESTP는 갑자기 벌점을 받은 기분이 들어요.", collision: "ISFJ는 세 번 참았고, ESTP는 첫 번째 경고도 못 들었습니다." },
+  ISFJ: { title: "괜찮다 해놓고 조용히 장부에 적는 살림꾼", tagline: "아니에요, 괜찮아요. 다만 기억은 할게요.", mode: "사이를 어색하게 만들기 싫어 불편함을 참으면서도, 내가 챙긴 만큼 알아주길 바라요. 말하지 않은 기대가 서운함으로 쌓이면 상대는 괜찮다던 일로 뒤늦게 청구서를 받은 기분이 들어요.", drains: "ENTP", drainsReason: "예측하기 어려운 논쟁과 변화가 관계의 안전선을 계속 흔들어요.", drainedBy: "ESTP", drainedReason: "직접 말하지 않은 기대가 쌓이면 ESTP는 갑자기 벌점을 받은 기분이 들어요.", collision: "ISFJ는 세 번 참았고, ESTP는 첫 번째 경고도 못 들었습니다." },
   ESTJ: { title: "감정에도 마감 시간을 거는 호박마차 총감독", tagline: "서운한 건 알겠는데, 오늘 안에 풀 수 있죠?", mode: "관계의 혼란을 빨리 정리하려다 상대의 감정 회복 속도까지 재촉해요.", drains: "INFP", drainsReason: "속마음을 바로 말하지 않고 결정을 미루면 해결 의지가 없는 것처럼 보여요.", drainedBy: "ISFP", drainedReason: "기준과 결론을 강하게 요구하면 ISFP가 취향과 감정을 심사받는 기분이 들어요.", collision: "ESTJ는 해결 일정을 잡고, ISFP는 마음의 문을 잠급니다." },
   ESFJ: { title: "모두의 참여를 의무로 만드는 잔치 주인공", tagline: "우리 사이인데 이 정도는 같이 해야 하는 거 아니야?", mode: "함께하고 싶은 마음이 커질수록 연락과 반응을 애정의 증거처럼 확인해요.", drains: "INTP", drainsReason: "감정 표현과 연락이 적으면 관계에 관심이 없는 것처럼 느끼기 쉬워요.", drainedBy: "ISTP", drainedReason: "반응과 설명을 자주 요구하면 ISTP는 혼자 숨 돌릴 공간이 없다고 느껴요.", collision: "ESFJ는 답장을 기다리고, ISTP는 답장을 생각하지 않고 있습니다." },
-  ISTP: { title: "설명 없이 고치고 대화도 종료하는 오두막 장인", tagline: "문제는 해결됐는데, 더 얘기해야 하나요?", mode: "행동으로 해결했다고 생각해 감정 확인과 과정 설명을 생략해요.", drains: "ENFJ", drainsReason: "감정을 계속 묻고 관계의 의미를 정리하려 하면 압박처럼 느껴져요.", drainedBy: "ESFJ", drainedReason: "짧은 반응과 혼자만의 시간이 ESFJ에게는 무관심과 거리두기로 읽힐 수 있어요.", collision: "ISTP는 수리를 끝냈고, ESFJ는 아직 대화를 시작하지도 못했습니다." },
-  ISFP: { title: "싫다는 말 대신 파도 아래 숨는 인어", tagline: "아무거나 좋아. 나는 조금 조용히 있을게.", mode: "갈등이 거칠어질수록 선택을 미루고 혼자 감정을 회복하러 사라져요.", drains: "ENTJ", drainsReason: "강한 말과 빠른 결론이 내 마음을 밀어내는 힘처럼 느껴져요.", drainedBy: "ESTJ", drainedReason: "기준을 말하지 않고 거리를 두면 ESTJ는 무엇을 고쳐야 할지 몰라 초조해져요.", collision: "ENTJ는 대답을 재촉하고, ISFP는 더 깊은 물속으로 들어갑니다." },
+  ISTP: { title: "설명 없이 고치고 대화도 종료하는 오두막 장인", tagline: "문제는 해결됐는데, 더 얘기해야 하나요?", mode: "말보다 행동으로 도와주는 게 낫다고 생각해 문제를 처리하고 대화를 끝내요. 상대가 원한 게 해결보다 이해였을 때는, 일은 끝났어도 마음은 그대로 남아요.", drains: "ENFJ", drainsReason: "나를 위한 일이라며 거절한 제안을 계속 설득하면, 내 선택을 존중받지 못하고 붙잡힌 기분이 들어요.", drainedBy: "ESFJ", drainedReason: "짧은 반응과 혼자만의 시간이 ESFJ에게는 무관심과 거리두기로 읽힐 수 있어요.", collision: "ISTP는 수리를 끝냈고, ESFJ는 아직 대화를 시작하지도 못했습니다." },
+  ISFP: { title: "싫다는 말 대신 파도 아래 숨는 인어", tagline: "아무거나 좋아. 나는 조금 조용히 있을게.", mode: "내 취향과 선택을 지키고 싶지만 거칠게 부딪히기는 싫어서, 일단 맞장구친 뒤 혼자 다른 길로 가요. 상대는 합의했다고 믿었다가 뒤늦게 거절을 알아차려요.", drains: "ENTJ", drainsReason: "강한 말과 빠른 결론이 내 마음을 밀어내는 힘처럼 느껴져요.", drainedBy: "ESTJ", drainedReason: "기준을 말하지 않고 거리를 두면 ESTJ는 무엇을 고쳐야 할지 몰라 초조해져요.", collision: "ENTJ는 대답을 재촉하고, ISFP는 더 깊은 물속으로 들어갑니다." },
   ESTP: { title: "일단 저지르고 모두를 현장에 끌어들이는 모험가", tagline: "여기까지 왔는데 그냥 해보면 되잖아!", mode: "지금의 재미와 해결에 집중해 상대가 준비할 시간과 감정의 여운을 건너뛰어요.", drains: "INFJ", drainsReason: "행동마다 의미와 감정을 오래 확인하면 발이 묶인 듯 답답해져요.", drainedBy: "ISFJ", drainedReason: "갑작스러운 변경과 강한 농담이 ISFJ의 안전감과 신뢰를 소모시켜요.", collision: "ESTP는 이미 출발했고, ISFJ는 출발한다는 말을 방금 들었습니다." },
   ESFP: { title: "분위기로 모든 결정을 덮는 무도회 주인공", tagline: "일단 즐겁게 놀고, 심각한 얘기는 나중에 하자!", mode: "불편한 순간을 재미로 넘기려다 진지한 대화가 필요한 상대를 혼자 남겨요.", drains: "INTJ", drainsReason: "반응이 적고 계획만 따지는 태도에서 차갑고 평가받는 느낌을 받아요.", drainedBy: "INFJ", drainedReason: "무거운 감정을 빠르게 환기하려 하면 INFJ는 진심이 가볍게 취급됐다고 느껴요.", collision: "ESFP는 분위기를 살렸고, INFJ는 대화가 사라졌다고 느낍니다." },
 };
@@ -130,10 +130,8 @@ function focusMain() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function spriteStyle(index) {
-  const column = index % 4;
-  const row = Math.floor(index / 4);
-  return `--sprite-x:${(column / 3) * 100}%;--sprite-y:${(row / 3) * 100}%`;
+function characterImage(code, className, label = types[code].name) {
+  return `<img class="nemesis-character-image ${className}" src="assets/nemesis/${code}.png?v=20261106-villains1" alt="${escapeHtml(label)} 캐릭터" draggable="false" />`;
 }
 
 function renderIntro() {
@@ -141,9 +139,9 @@ function renderIntro() {
     <section class="screen hero nemesis-hero" aria-labelledby="intro-title">
       <p class="eyebrow">RELATIONSHIP VILLAIN TEST</p>
       <div class="villain-cast" aria-hidden="true">
-        <span class="nemesis-sprite cast-a" style="${spriteStyle(5)}"></span>
-        <span class="nemesis-sprite cast-b" style="${spriteStyle(2)}"></span>
-        <span class="nemesis-sprite cast-c" style="${spriteStyle(10)}"></span>
+        ${characterImage("INFP", "cast-a")}
+        ${characterImage("ENTJ", "cast-b")}
+        ${characterImage("ESTJ", "cast-c")}
       </div>
       <div class="hero-heading">
         <h1 id="intro-title"><span>내 인간관계의</span><span>빌런 찾기</span></h1>
@@ -229,7 +227,7 @@ function restoreResult() {
 
 function villainCard(label, code, reason) {
   const item = types[code];
-  return `<div class="villain-card"><span class="nemesis-sprite villain-character" style="${spriteStyle(item.sprite)}" role="img" aria-label="${escapeHtml(item.name)} 캐릭터"></span><div><small>${label}</small><strong>${escapeHtml(item.name)}</strong><p>${escapeHtml(reason)}</p></div></div>`;
+  return `<div class="villain-card">${characterImage(code, "villain-character")}<div><small>${label}</small><strong>${escapeHtml(item.name)}</strong><p>${escapeHtml(reason)}</p></div></div>`;
 }
 
 function renderResult({ trackCompletion = true } = {}) {
@@ -240,7 +238,7 @@ function renderResult({ trackCompletion = true } = {}) {
     <section class="screen result-screen nemesis-result" style="--result-accent:${type.accent};--result-soft:${type.soft}" aria-labelledby="result-title">
       <header class="result-hero">
         <p class="eyebrow">내 안의 빌런 모드는</p>
-        <span class="nemesis-result-character-frame"><span class="nemesis-sprite nemesis-result-character" style="${spriteStyle(type.sprite)}" role="img" aria-label="${escapeHtml(type.name)} 캐릭터"></span></span>
+        <span class="nemesis-result-character-frame">${characterImage(state.code, "nemesis-result-character")}</span>
         <h1 class="result-name" id="result-title" tabindex="-1">${escapeHtml(profile.title)}</h1>
         <p class="catchphrase">“${escapeHtml(profile.tagline)}”</p>
       </header>

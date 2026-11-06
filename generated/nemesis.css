@@ -50,24 +50,27 @@
   white-space: nowrap;
 }
 
-.nemesis-sprite {
-  --sprite-x: 0%;
-  --sprite-y: 0%;
+.nemesis-character-image {
   display: block;
   flex: 0 0 auto;
-  aspect-ratio: 1;
-  background-image: url("assets/world_characters.png?v=20261104-retina1");
-  background-repeat: no-repeat;
-  background-position: var(--sprite-x) var(--sprite-y);
-  background-size: 400% 400%;
+  object-fit: contain;
+  user-select: none;
 }
 
-.villain-cast .nemesis-sprite { position: absolute; width: clamp(145px, 44vw, 180px); }
+.villain-cast .nemesis-character-image { position: absolute; width: clamp(145px, 44vw, 180px); }
 .villain-cast .cast-a { left: -9px; bottom: -18px; transform: rotate(-6deg); }
 .villain-cast .cast-b { left: 50%; bottom: 5px; transform: translateX(-50%) scale(1.05); z-index: 1; }
 .villain-cast .cast-c { right: -12px; bottom: -20px; transform: rotate(7deg); }
 
+.nemesis-hero h1,
+.nemesis-question .question-card h2,
+.nemesis-result .result-name {
+  font-family: "Hakgyoansim Dunggeunmiso Web", sans-serif;
+  font-weight: 700;
+  font-synthesis: none;
+}
 .nemesis-hero h1 { font-size: clamp(34px, min(10vw, 5svh), 42px); }
+.nemesis-question .question-card h2 { letter-spacing: -0.015em; line-height: 1.35; }
 .nemesis-hero .primary-button { background: var(--villain-lime); }
 .nemesis-hero .pill { color: var(--villain-plum); background: #f1e7f2; }
 
@@ -92,17 +95,17 @@
 .nemesis-result-character-frame {
   position: relative;
   width: clamp(235px, 72vw, 300px);
-  aspect-ratio: 1 / .74;
-  overflow: hidden;
+  aspect-ratio: 1;
+  overflow: visible;
 }
-.nemesis-result-character { position: absolute; top: -8%; left: 0; width: 100%; }
+.nemesis-result-character { width: 100%; height: 100%; object-fit: contain; }
 .nemesis-result .result-name {
   max-width: 370px;
   font-family: var(--display);
   font-size: clamp(26px, 7.6vw, 34px);
   line-height: 1.16;
 }
-.nemesis-result .catchphrase { margin-bottom: 8px; }
+.nemesis-result .catchphrase { margin-bottom: 8px; word-break: keep-all; overflow-wrap: break-word; }
 
 .villain-section { min-height: 0; }
 .villain-pair { display: grid; gap: 12px; margin-top: 12px; }
@@ -119,7 +122,8 @@
 .villain-card:nth-child(2) { background: #fff1d8; }
 .villain-character {
   width: 96px;
-  background-position: var(--sprite-x) calc(var(--sprite-y) + 6px);
+  height: 96px;
+  object-fit: contain;
 }
 .villain-card small { display: block; margin-bottom: 4px; color: var(--villain-plum); font-size: 11px; font-weight: 900; }
 .villain-card strong { display: block; font-size: 15px; line-height: 1.35; word-break: keep-all; }

@@ -40,4 +40,12 @@ def build_webapp(spec: dict[str, Any], output_dir: Path) -> None:
     world_intro = PROJECT_ROOT / "assets" / "characters" / "world_intro_group.png"
     if world_intro.exists():
         shutil.copy2(world_intro, output_dir / "assets" / world_intro.name)
+    nemesis_characters = PROJECT_ROOT / "assets" / "characters" / "nemesis"
+    if nemesis_characters.exists():
+        shutil.copytree(
+            nemesis_characters,
+            output_dir / "assets" / "nemesis",
+            dirs_exist_ok=True,
+            ignore=shutil.ignore_patterns("drafts"),
+        )
 
